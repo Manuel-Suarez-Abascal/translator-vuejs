@@ -40,6 +40,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # Future Features
 
-- Work on app styling.
-- Several Languages Translation options.
+- [x] Work on app styling.
+- [ ] Several Languages Translation options.
+- [ ] Add a light/dark theme button switcher.
 
