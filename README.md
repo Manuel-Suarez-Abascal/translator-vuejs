@@ -37,3 +37,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Future Features
+
+- Work on app styling.
+- Several Languages Translation options.
+- Add a light/dark theme switcher button.
