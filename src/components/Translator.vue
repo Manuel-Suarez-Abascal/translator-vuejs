@@ -1,14 +1,31 @@
 <template>
   <b-container class="bv-example-row">
-    <h1 class="mb-4">{{ msg }}</h1>
+    <h1 class="my-4 h1">{{ msg }}</h1>
+
+    <!-- Language Selector Dropdown -->
+    <b-row class="justify-content-center">
+
+      <span class="mx-2 my-4"><strong>From:</strong></span>
+      <b-col class="my-3 p-0" col lg="2" md="2">
+        <b-form-select v-model="selected1" :options="options"></b-form-select>
+      </b-col>
+      <br>
+
+      <span class="mr-2 ml-4 my-4"><strong>To:</strong></span>
+      <b-col class="my-3 p-0" col lg="2" md="2">
+        <b-form-select v-model="selected2" :options="options"></b-form-select>
+      </b-col>
+    </b-row>
+
     <p class="text-secondary">A translation app powered by <a class="vuejs-link text-decoration-none" href="https://vuejs.org/" target="_blank"> Vuejs</a> & <a class="yandex-link text-decoration-none" href="https://tech.yandex.com/translate/" target="_blank">Yandex's API</a>. Made by <a class="color-info text-decoration-none" href="https://github.com/Manuel-Suarez-Abascal" target="_blank">Manuel Abascal.</a></p>
+
     <b-row>
-      <b-col class="translation-container" lg="6" md="6" sm="12">
+      <b-col class="translation-container mb-3" lg="6" md="6" sm="12">
         <!-- Input field to get a value to translate -->
         <b-form-textarea class="w-100" type="text" rows="5" v-model="inputValue" :placeholder="placeholder" @keyup="translate"></b-form-textarea>
       </b-col>
 
-      <b-col class="translated-container" lg="6" md="6" sm="12">
+      <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
         <!-- Outputs the translation results -->
         <b-form-textarea class="w-100" rows="5" v-if="wordTranslated" :value="wordTranslated"></b-form-textarea>
 
@@ -28,20 +45,38 @@ export default {
   name: "Translator",
   data() {
     return {
-      msg: 'Translate from English to Spanish',
+      msg: 'Select Language Pair To Translate',
       placeholder: 'Type something ...',
       wordTranslated: '',
-      inputValue: ''
+      inputValue: '',
+      
+      // Language Options 1
+      selected1: null,
+        options: [
+          { value: null, text: 'Select an option' },
+          { value: 'en', text: 'English' },
+          { value: 'fr', text: 'French' },
+          { value: 'es', text: 'Spanish' }
+        ],
+
+        // Language Options 2
+      selected2: null,
+        options: [
+          { value: null, text: 'Select an option' },
+          { value: 'en', text: 'English' },
+          { value: 'fr', text: 'French' },
+          { value: 'es', text: 'Spanish' }
+        ]
     }
   },
   methods: {
       // translate() method makes translate the input's value if keyboard key "Enter" is pressed
       translate(e) {
+        
         // Checks if enter key has been pressed
         if( e.key == 'Enter' ){
-          
           // Axios get() request using Yandex API
-          axios.get('https://translate.yandex.net/api/v1.5/tr.json/translate?lang=en-es&key=trnsl.1.1.20190518T054559Z.6098481762cecacb.6b721345d2262aa024e24b0aa7bbc42011422525&text='+this.inputValue+'&lang=en-es&format=plain').then(response => {
+          axios.get('https://translate.yandex.net/api/v1.5/tr.json/translate?lang='+this.selected1+'-'+this.selected2+'&key=trnsl.1.1.20190518T054559Z.6098481762cecacb.6b721345d2262aa024e24b0aa7bbc42011422525&text='+this.inputValue+'&format=plain').then(response => {
           
           // Stores input value translation into translated result
           this.wordTranslated = response.data.text[0]
@@ -75,10 +110,4 @@ export default {
   color: #9e1104;
 }
 
-/* Adds margin bottom to translation textarea on mobile version */
-@media only screen and (max-width: 700px) {
-  .translation-container, .translated-container {
-    margin-bottom: 25px;
-  }
-}
 </style>
