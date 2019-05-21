@@ -1,5 +1,7 @@
 # translation-app-vuejs
 
+Check the [demo here](https://manuel-suarez-abascal.github.io/translator-vuejs/)
+
 # Project Setup
 =================
 ## Install Dependencies
@@ -41,6 +43,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 # Future Features
 
 - [x] Work on app styling.
-- [ ] Several Languages Translation options.
+
+- [x] Several Languages Translation options.
+
 - [ ] Add a light/dark theme button switcher.
 
