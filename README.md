@@ -51,3 +51,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - [ ] Make a copy text button.
 
 - [ ] Load animations.
+
+# Contributors
+
+- [Kamer Elciyar](https://github.com/kamer)
