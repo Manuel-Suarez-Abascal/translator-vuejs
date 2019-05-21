@@ -3,19 +3,7 @@
     <h1 class="my-4 h1">{{ msg }}</h1>
 
     <!-- Language Selector Dropdown -->
-    <b-row class="justify-content-center">
-
-      <span class="mx-2 my-4"><strong>From:</strong></span>
-      <b-col class="my-3 p-0" col lg="2" md="2">
-        <b-form-select v-model="selected1" :options="options"></b-form-select>
-      </b-col>
-      <br>
-
-      <span class="mr-2 ml-4 my-4"><strong>To:</strong></span>
-      <b-col class="my-3 p-0" col lg="2" md="2">
-        <b-form-select v-model="selected2" :options="options"></b-form-select>
-      </b-col>
-    </b-row>
+    <language-selector @onLangFromSelect="updatePairFrom" @onLangToSelect="updatePairTo"></language-selector>
 
     <p class="text-secondary">A translation app powered by <a class="vuejs-link text-decoration-none" href="https://vuejs.org/" target="_blank"> Vuejs</a> & <a class="yandex-link text-decoration-none" href="https://tech.yandex.com/translate/" target="_blank">Yandex's API</a>. Made by <a class="color-info text-decoration-none" href="https://github.com/Manuel-Suarez-Abascal" target="_blank">Manuel Abascal.</a></p>
 
@@ -40,6 +28,7 @@
 
 // Import axios to the component
 import axios from 'axios';
+import LanguageSelector from './LanguageSelector'
 
 export default {
   name: "Translator",
@@ -49,24 +38,9 @@ export default {
       placeholder: 'Type something ...',
       wordTranslated: '',
       inputValue: '',
-      
-      // Language Options 1
-      selected1: null,
-        options: [
-          { value: null, text: 'Select an option' },
-          { value: 'en', text: 'English' },
-          { value: 'fr', text: 'French' },
-          { value: 'es', text: 'Spanish' }
-        ],
-
-        // Language Options 2
-      selected2: null,
-        options: [
-          { value: null, text: 'Select an option' },
-          { value: 'en', text: 'English' },
-          { value: 'fr', text: 'French' },
-          { value: 'es', text: 'Spanish' }
-        ]
+      // from and to values are changed when LanguageSelector emits language codes.
+      languageFrom: null,
+      languageTo: null
     }
   },
   methods: {
@@ -76,7 +50,7 @@ export default {
         // Checks if enter key has been pressed
         if( e.key == 'Enter' ){
           // Axios get() request using Yandex API
-          axios.get('https://translate.yandex.net/api/v1.5/tr.json/translate?lang='+this.selected1+'-'+this.selected2+'&key=trnsl.1.1.20190518T054559Z.6098481762cecacb.6b721345d2262aa024e24b0aa7bbc42011422525&text='+this.inputValue+'&format=plain').then(response => {
+          axios.get('https://translate.yandex.net/api/v1.5/tr.json/translate?lang='+this.languageFrom+'-'+this.languageTo+'&key=trnsl.1.1.20190518T054559Z.6098481762cecacb.6b721345d2262aa024e24b0aa7bbc42011422525&text='+this.inputValue+'&format=plain').then(response => {
           
           // Stores input value translation into translated result
           this.wordTranslated = response.data.text[0]
@@ -85,8 +59,21 @@ export default {
           this.inputValue = ''
         }) 
       }
+    },
+
+    // It works when 'from' option is selected.
+    updatePairFrom(val) {
+      this.languageFrom = val;
+    },
+
+    // It works when 'to' option is selected.
+    updatePairTo(val) {
+      this.languageTo = val;
     }
   },
+  components: {
+    LanguageSelector
+  }
 };
 </script>
 
