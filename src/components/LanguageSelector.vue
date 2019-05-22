@@ -7,7 +7,7 @@
       <b-col class="my-3 p-0" col lg="2" md="2">
         <!-- When input changes it calls related method to emit selected data. -->
         <b-form-select v-model="optionFrom" @input="onOptionFromSelect">
-            <option :value="null">Please select an option</option>
+            <option :value="null">Select an language</option>
             <option v-for="option in languageOptions" :key="option.value" :value="option.value">{{option.text}}</option>
         </b-form-select>
       </b-col>
@@ -19,7 +19,7 @@
       <b-col class="my-3 p-0" col lg="2" md="2">
         <!-- When input changes it calls related method to emit selected data. -->
         <b-form-select v-model="optionTo" @input="onOptionToSelect">
-            <option :value="null">Select an option</option>
+            <option :value="null">Select an language</option>
             <option v-for="option in languageOptions" :key="option.value" :value="option.value">{{option.text}}</option>
         </b-form-select>
       </b-col>

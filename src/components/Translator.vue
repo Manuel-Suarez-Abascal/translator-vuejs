@@ -1,7 +1,8 @@
 <template>
   <b-container class="bv-example-row">
     <h1 class="my-4 h1">{{ msg }}</h1>
-
+    <!-- Theme Color Switcher Component -->
+    <theme-switcher></theme-switcher>
     <!-- Language Selector Dropdown -->
     <language-selector @onLangFromSelect="updatePairFrom" @onLangToSelect="updatePairTo"></language-selector>
 
@@ -28,7 +29,10 @@
 
 // Import axios to the component
 import axios from 'axios';
+// Import language selector component
 import LanguageSelector from './LanguageSelector'
+// Import theme switcher component
+import ThemeSwitcher from './ThemeSwitcher'
 
 export default {
   name: "Translator",
@@ -72,14 +76,14 @@ export default {
     }
   },
   components: {
-    LanguageSelector
+    LanguageSelector,
+    ThemeSwitcher
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
 /* Links styling */
 .vuejs-link {
   color: #4fc08d;
@@ -96,5 +100,4 @@ export default {
 .yandex-link:hover {
   color: #9e1104;
 }
-
 </style>
