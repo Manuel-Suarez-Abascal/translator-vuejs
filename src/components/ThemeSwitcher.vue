@@ -2,7 +2,7 @@
     <div>
         <!-- Theme Dark/Light Switcher -->
         <b-form-checkbox v-model="checked" name="check-button" @change="changeThemeColor" switch>
-            <p v-if="checked" class="text-dark">Dark-Theme</p>
+            <p v-if="checked">Dark-Theme</p>
             <p v-else>Light-Theme</p>
         </b-form-checkbox>
     </div>
@@ -39,8 +39,25 @@ export default {
   color: #111; 
 }
 
-.dark-mode h1, p, span {
+.dark-mode span {
     color: #fff;
 }
 
+.dark-mode h1 {
+    color: #fff;
+}
+
+.dark-mode p {
+    color: #fff;
+}
+
+.light-mode h1{
+    color: #000;
+}
+/* App takes 100% height on mobile */
+@media only screen and (max-width: 767px) {
+  #app {
+    height: 100% !important;
+  }
+}
 </style>
