@@ -44,10 +44,10 @@ export default {
   },
   methods: {
       onOptionFromSelect() {
-          this.$emit('onLangFromSelect', this.optionFrom)
+        this.$emit('onLangFromSelect', this.optionFrom)
       },
       onOptionToSelect() {
-          this.$emit('onLangToSelect', this.optionTo)
+        this.$emit('onLangToSelect', this.optionTo)
       }
   }
 

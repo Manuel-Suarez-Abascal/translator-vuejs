@@ -84,6 +84,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+h1 {
+  color: #000;
+}
 /* Links styling */
 .vuejs-link {
   color: #4fc08d;
