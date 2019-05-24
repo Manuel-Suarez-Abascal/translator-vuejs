@@ -48,7 +48,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 - ~~Add a light/dark theme button switcher.~~
 
-- Make a copy text button.
+- ~~Make a copy text button.~~
 
 - Load animations.
 
