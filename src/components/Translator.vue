@@ -22,6 +22,10 @@
         <b-form-textarea class="w-100" rows="5" placeholder="The translation results will show here!" v-else></b-form-textarea>
       </b-col>
     </b-row>
+
+    <!-- Copy Translation Button -->
+    <CopyTranslation @copy-text="getTranslationValue"  title="Copy Text" />
+
   </b-container>
 </template>
 
@@ -33,6 +37,8 @@ import axios from 'axios';
 import LanguageSelector from './LanguageSelector'
 // Import theme switcher component
 import ThemeSwitcher from './ThemeSwitcher'
+// Import button to copy translation text
+import CopyTranslation from './CopyTranslation'
 
 export default {
   name: "Translator",
@@ -73,11 +79,17 @@ export default {
     // It works when 'to' option is selected.
     updatePairTo(val) {
       this.languageTo = val;
+    },
+
+    // Copy the text translated
+    getTranslationValue: function() {
+      console.log(this.wordTranslated)
     }
   },
   components: {
     LanguageSelector,
-    ThemeSwitcher
+    ThemeSwitcher,
+    CopyTranslation
   }
 };
 </script>
