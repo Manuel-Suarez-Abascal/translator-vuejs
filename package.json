@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.20",
+    "clipboard": "^2.0.4",
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
   },
