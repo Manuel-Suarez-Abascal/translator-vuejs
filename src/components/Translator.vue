@@ -16,16 +16,20 @@
 
       <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
         <!-- Outputs the translation results -->
-        <b-form-textarea class="w-100" rows="5" v-if="wordTranslated" :value="wordTranslated"></b-form-textarea>
+        <b-form-textarea id="translation-result" class="w-100" rows="5" v-if="wordTranslated" :value="wordTranslated"></b-form-textarea>
 
         <!-- If no translation it shows this message -->
         <b-form-textarea class="w-100" rows="5" placeholder="The translation results will show here!" v-else></b-form-textarea>
       </b-col>
     </b-row>
 
-    <!-- Copy Translation Button -->
-    <CopyTranslation @copy-text="getTranslationValue"  title="Copy Text" />
+      <!-- Button to copy translated content using clipboard.js -->
+      <b-button id="copyBtn" class="my-4" :data-clipboard-text="this.wordTranslated" variant="outline-success">Copy to Clipboard</b-button>
 
+      <!-- Tooltip will show only when text is translated & button clicked -->
+      <b-tooltip v-if="this.wordTranslated" triggers="click" target="copyBtn" placement="right">
+        <strong>Text Copied</strong>
+      </b-tooltip>
   </b-container>
 </template>
 
@@ -37,8 +41,7 @@ import axios from 'axios';
 import LanguageSelector from './LanguageSelector'
 // Import theme switcher component
 import ThemeSwitcher from './ThemeSwitcher'
-// Import button to copy translation text
-import CopyTranslation from './CopyTranslation'
+
 
 export default {
   name: "Translator",
@@ -52,6 +55,10 @@ export default {
       languageFrom: null,
       languageTo: null
     }
+  },
+  mounted(){
+    //Calls button to copy translation with clipboard.js
+    new ClipboardJS('.btn');
   },
   methods: {
       // translate() method makes translate the input's value if keyboard key "Enter" is pressed
@@ -80,16 +87,10 @@ export default {
     updatePairTo(val) {
       this.languageTo = val;
     },
-
-    // Copy the text translated
-    getTranslationValue: function() {
-      console.log(this.wordTranslated)
-    }
   },
   components: {
     LanguageSelector,
-    ThemeSwitcher,
-    CopyTranslation
+    ThemeSwitcher
   }
 };
 </script>
