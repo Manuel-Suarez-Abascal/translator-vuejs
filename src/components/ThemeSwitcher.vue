@@ -54,10 +54,5 @@ export default {
 .light-mode h1{
     color: #000;
 }
-/* App takes 100% height on mobile */
-@media only screen and (max-width: 767px) {
-  #app {
-    height: 100% !important;
-  }
-}
+
 </style>
