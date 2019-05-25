@@ -52,6 +52,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 - Load animations.
 
+- Create button to change translatio language order.
+
+- Add sound to the translation text.
+
 # Contributors
 
 - [Kamer Elciyar](https://github.com/kamer)
