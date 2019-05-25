@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Theme Dark/Light Switcher -->
-        <b-form-checkbox v-model="checked" name="check-button" @change="changeThemeColor" switch>
+        <b-form-checkbox class="theme-switcher" v-model="checked" name="check-button" @change="changeThemeColor" switch>
             <p v-if="checked">Dark-Theme</p>
             <p v-else>Light-Theme</p>
         </b-form-checkbox>
@@ -28,6 +28,9 @@ export default {
 </script>
 
 <style>
+.theme-switcher label:hover {
+    cursor: pointer;
+}
 /* Dark & Light mode styling */
 .dark-mode {
   background-color: #111;
@@ -54,5 +57,4 @@ export default {
 .light-mode h1{
     color: #000;
 }
-
 </style>
