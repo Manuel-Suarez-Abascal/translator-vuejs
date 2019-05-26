@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img class="mt-5" alt="Vue logo" src="./assets/logo.png" />
+    
     <Translator />
   </div>
 </template>
