@@ -50,9 +50,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 - ~~Make a copy text button.~~
 
-- Load animations.
+- ~~Load animations.~~
 
-- Create button to change translatio language order.
+- Create button to change translation language order.
 
 - Add sound to the translation text.
 
