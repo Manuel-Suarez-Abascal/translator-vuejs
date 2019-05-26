@@ -116,6 +116,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+
+/* Preloader Spinner Vertical Positioning */
+.spinner-container {
+  margin-top: 30%;
+}
+
+@media only screen and (max-width: 750px) {
+  .spinner-container {
+    margin-top: 50%;
+  }
+}
+
 h1 {
   color: #000;
 }
