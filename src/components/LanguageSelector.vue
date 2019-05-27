@@ -4,7 +4,7 @@
       <span class="mx-2 my-4">
         <strong>From:</strong>
       </span>
-      <b-col class="my-3 p-0" col lg="2" md="2">
+      <b-col class="my-3 p-0" col lg="3" md="4" sm="10" cols="10">
         <!-- When input changes it calls related method to emit selected data. -->
         <b-form-select v-model="optionFrom" @input="onOptionFromSelect">
             <option :value="null">Select an language</option>
@@ -16,7 +16,7 @@
       <span class="mr-2 ml-4 my-4">
         <strong>To:</strong>
       </span>
-      <b-col class="my-3 p-0" col lg="2" md="2">
+      <b-col class="my-3 p-0" col lg="3" md="4" sm="10" cols="10">
         <!-- When input changes it calls related method to emit selected data. -->
         <b-form-select v-model="optionTo" @input="onOptionToSelect">
             <option :value="null">Select an language</option>
