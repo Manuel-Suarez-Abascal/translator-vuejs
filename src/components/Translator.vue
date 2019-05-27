@@ -50,7 +50,8 @@ import axios from 'axios';
 import LanguageSelector from './LanguageSelector'
 // Import theme switcher component
 import ThemeSwitcher from './ThemeSwitcher'
-
+// Import clipboard.js
+import ClipboardJS from 'clipboard'
 
 export default {
   name: "Translator",
