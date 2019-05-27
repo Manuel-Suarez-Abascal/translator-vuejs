@@ -52,9 +52,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 - ~~Load animations.~~
 
-- Create button to change translation language order.
+- ~~Create button to change translation language order.~~
 
-- Add sound to the translation text.
+- Add text speech sound to the translation text.
 
 # Contributors
 
