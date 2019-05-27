@@ -12,7 +12,9 @@
         </b-form-select>
       </b-col>
       <br>
-
+      <!-- Interchanges Language Options -->
+      <span @click="interchangeLanguages">Interchange languages</span>
+      
       <span class="mr-2 ml-4 my-4">
         <strong>To:</strong>
       </span>
@@ -48,6 +50,10 @@ export default {
       },
       onOptionToSelect() {
         this.$emit('onLangToSelect', this.optionTo)
+      },
+      // Interchange Language Options
+      interchangeLanguages(){
+        this.optionFrom = [this.optionTo, this.optionTo = this.optionFrom][0];
       }
   }
 
