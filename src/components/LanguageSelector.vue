@@ -13,7 +13,7 @@
       </b-col>
 
       <!-- Interchanges Language Options -->
-      <b-col col lg="1" md="2" sm="10" cols="12">
+      <b-col col lg="1" md="2" sm="12" cols="12">
         <i  @click="interchangeLanguages" class="fa fa-exchange mt-3 ml-4 interchange-lang-btn" aria-hidden="true"></i>
       </b-col>
 
@@ -69,7 +69,7 @@ export default {
   cursor: pointer;
   padding: 10px 15px;
 }
-  @media only screen and (max-width: 575px) {
+@media only screen and (max-width: 765px) {
   .interchange-lang-btn {
     margin-top: 0 !important;
   }
