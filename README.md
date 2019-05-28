@@ -42,18 +42,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # Future Features
 
-- ~~Work on app styling.~~
-
-- ~~Several Languages Translation options.~~
-
-- ~~Add a light/dark theme button switcher.~~
-
-- ~~Make a copy text button.~~
-
-- ~~Load animations.~~
-
-- ~~Create button to change translation language order.~~
-
 - Add text speech sound to the translation text.
 
 # Contributors
