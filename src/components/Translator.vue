@@ -32,7 +32,7 @@
       </b-row>
 
         <!-- Button to copy translated content using clipboard.js -->
-        <b-button id="copyBtn" class="my-4" :data-clipboard-text="this.wordTranslated" variant="outline-success">Copy to Clipboard</b-button>
+        <b-button id="copyBtn" class="copy-translation-btn my-4" :disabled="!this.wordTranslated" :data-clipboard-text="this.wordTranslated" variant="outline-success">Copy Translation</b-button>
 
         <!-- Tooltip will show only when text is translated & button clicked -->
         <b-tooltip v-if="this.wordTranslated" triggers="click" target="copyBtn" placement="bottom">
@@ -147,5 +147,13 @@ h1 {
 
 .yandex-link:hover {
   color: #9e1104;
+}
+
+/* Styling when btn for copying translation is disabled */
+.copy-translation-btn:disabled {
+  cursor: not-allowed;
+  background-color: #808080 !important;
+  color: #ffffff !important;
+  border: none !important;
 }
 </style>
