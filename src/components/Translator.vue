@@ -35,7 +35,7 @@
         <b-button id="copyBtn" class="copy-translation-btn my-4" :disabled="!this.wordTranslated" :data-clipboard-text="this.wordTranslated" variant="outline-success">Copy Translation</b-button>
 
         <!-- Tooltip will show only when text is translated & button clicked -->
-        <b-tooltip v-if="this.wordTranslated" triggers="click" target="copyBtn" placement="bottom">
+        <b-tooltip triggers="click" target="copyBtn" placement="bottom">
           <strong>Text Copied</strong>
         </b-tooltip>
       </div>
