@@ -32,10 +32,10 @@
       </b-row>
 
         <!-- Button to copy translated content using clipboard.js -->
-        <b-button id="copyBtn" class="copy-translation-btn my-4" :disabled="!this.wordTranslated" :data-clipboard-text="this.wordTranslated" variant="outline-success">Copy Translation</b-button>
+        <b-button id="copyBtn" class="copy-translation-btn my-4" :disabled="!this.wordTranslated" :data-clipboard-text="this.wordTranslated" variant="outline-success" @click="showTooltip = true">Copy Translation</b-button>
 
         <!-- Tooltip will show only when text is translated & button clicked -->
-        <b-tooltip triggers="click" target="copyBtn" placement="bottom">
+        <b-tooltip delay="500" triggers="click" :show.sync="showTooltip" @shown="hideTooltipLater" target="copyBtn" placement="bottom">
           <strong>Text Copied</strong>
         </b-tooltip>
       </div>
@@ -65,7 +65,9 @@ export default {
       languageFrom: null,
       languageTo: null,
       // Loading = true to show Preloader Spinner Animation
-      loading: true
+      loading: true,
+      // Tooltip
+      showTooltip: false
     }
   },
   mounted(){
@@ -80,6 +82,12 @@ export default {
       setTimeout(() =>{
         this.loading = false
       },1500)
+    },
+    // function to fade away the tooltip
+    hideTooltipLater() {
+        setTimeout(() => {
+          this.showTooltip = false;
+        }, 5000);
     },
       // translate() method makes translate the input's value if keyboard key "Enter" is pressed
     translate(e) {
