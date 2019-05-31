@@ -32,12 +32,15 @@
       </b-row>
 
         <!-- Button to copy translated content using clipboard.js -->
-        <b-button id="copyBtn" class="copy-translation-btn my-4" :disabled="!this.wordTranslated" :data-clipboard-text="this.wordTranslated" variant="outline-success" @click="showTooltip = true">Copy Translation</b-button>
+        <b-button id="copyBtn" class="disable-btn my-4" :disabled="!this.wordTranslated" :data-clipboard-text="this.wordTranslated" variant="outline-success" @click="showTooltip = true">Copy Translation</b-button>
 
         <!-- Tooltip will show only when text is translated & button clicked -->
         <b-tooltip triggers="click" :show.sync="showTooltip" @shown="hideTooltipLater" target="copyBtn" placement="bottom">
           <strong>Text Copied</strong>
         </b-tooltip>
+
+        <!-- Text to Speech Audio button -->
+        <b-button variant="outline-info" class="disable-btn m-3 px-4" @click="responseSpeak" :disabled="!this.wordTranslated">Audio</b-button>
       </div>
   </b-container>
 </template>
@@ -67,7 +70,7 @@ export default {
       // Loading = true to show Preloader Spinner Animation
       loading: true,
       // Tooltip
-      showTooltip: false
+      showTooltip: false,
     }
   },
   mounted(){
@@ -75,8 +78,13 @@ export default {
     new ClipboardJS('.btn');
     //Call preloader spinner function
     this.preloaderSpinner()
+    
   },
   methods: {
+    // Method to get audio text to speech of translated text
+    responseSpeak(){
+      responsiveVoice.speak(this.wordTranslated, 'French Female'); 
+    },
     // function to make preloader spinner for 1000 milisecond
     preloaderSpinner(){
       setTimeout(() =>{
@@ -158,7 +166,7 @@ h1 {
 }
 
 /* Styling when btn for copying translation is disabled */
-.copy-translation-btn:disabled {
+.disable-btn:disabled {
   cursor: not-allowed;
   background-color: #808080 !important;
   color: #ffffff !important;
