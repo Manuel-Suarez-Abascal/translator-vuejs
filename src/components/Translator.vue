@@ -67,6 +67,8 @@ export default {
       // from and to values are changed when LanguageSelector emits language codes.
       languageFrom: null,
       languageTo: null,
+      // language voice value
+      languageTitle: null,
       // Loading = true to show Preloader Spinner Animation
       loading: true,
       // Tooltip
@@ -78,12 +80,18 @@ export default {
     new ClipboardJS('.btn');
     //Call preloader spinner function
     this.preloaderSpinner()
-    
+  },
+  // Listens for change in language title
+  computed: {
+    languageTitleChange: function(){
+      return this.languageTitle
+    },
+
   },
   methods: {
     // Method to get audio text to speech of translated text
     responseSpeak(){
-      responsiveVoice.speak(this.wordTranslated, 'French Female'); 
+      responsiveVoice.speak(this.wordTranslated); 
     },
     // function to make preloader spinner for 1000 milisecond
     preloaderSpinner(){
@@ -114,16 +122,19 @@ export default {
     }
   },
 
-    // It works when 'from' option is selected.
-    updatePairFrom(val) {
-      this.languageFrom = val;
-    },
-
-    // It works when 'to' option is selected.
-    updatePairTo(val) {
-      this.languageTo = val;
-    },
+  // It works when 'from' option is selected.
+  updatePairFrom(index) {
+    this.languageFrom = index.value;
   },
+
+  // It works when 'to' option is selected.
+  updatePairTo(index) {
+    // Language title for voice audio text to speech
+    this.languageTitle = index.text + ' Female'
+    // Language output translation
+    this.languageTo = index.value
+  },
+},
   components: {
     LanguageSelector,
     ThemeSwitcher
