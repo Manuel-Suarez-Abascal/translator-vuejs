@@ -75,26 +75,27 @@ export default {
       showTooltip: false,
     }
   },
-  mounted(){
+  mounted() {
     //Calls button to copy translation with clipboard.js
     new ClipboardJS('.btn');
     //Call preloader spinner function
     this.preloaderSpinner()
   },
-  // Listens for change in language title
+
   computed: {
-    languageTitleChange: function(){
+    // Listens for change in language title
+    languageTitleChange: function() {
       return this.languageTitle
     },
-
   },
   methods: {
     // Method to get audio text to speech of translated text
-    responseSpeak(){
-      responsiveVoice.speak(this.wordTranslated); 
+    responseSpeak() {	
+      //responsiveVoice.setDefaultVoice({ name: 'Fallback English', lang: 'en-US', fallbackvoice: true, timerSpeed:0 });
+      responsiveVoice.speak(this.wordTranslated, this.languageTitleChange.replace(/\s+/g,' ').trim()); 
     },
     // function to make preloader spinner for 1000 milisecond
-    preloaderSpinner(){
+    preloaderSpinner() {
       setTimeout(() =>{
         this.loading = false
       },1500)
