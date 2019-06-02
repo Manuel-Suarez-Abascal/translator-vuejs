@@ -32,12 +32,15 @@
       </b-row>
 
         <!-- Button to copy translated content using clipboard.js -->
-        <b-button id="copyBtn" class="copy-translation-btn my-4" :disabled="!this.wordTranslated" :data-clipboard-text="this.wordTranslated" variant="outline-success" @click="showTooltip = true">Copy Translation</b-button>
+        <b-button id="copyBtn" class="disable-btn my-4" :disabled="!this.wordTranslated" :data-clipboard-text="this.wordTranslated" variant="outline-success" @click="showTooltip = true">Copy Translation</b-button>
 
         <!-- Tooltip will show only when text is translated & button clicked -->
         <b-tooltip triggers="click" :show.sync="showTooltip" @shown="hideTooltipLater" target="copyBtn" placement="bottom">
           <strong>Text Copied</strong>
         </b-tooltip>
+
+        <!-- Text to Speech Audio button -->
+        <b-button variant="outline-info" class="disable-btn m-3 px-4" @click="responseSpeak" :disabled="!this.wordTranslated">Play</b-button>
       </div>
   </b-container>
 </template>
@@ -64,21 +67,34 @@ export default {
       // from and to values are changed when LanguageSelector emits language codes.
       languageFrom: null,
       languageTo: null,
+      // language voice value
+      languageTitle: null,
       // Loading = true to show Preloader Spinner Animation
       loading: true,
       // Tooltip
-      showTooltip: false
+      showTooltip: false,
     }
   },
-  mounted(){
+  mounted() {
     //Calls button to copy translation with clipboard.js
     new ClipboardJS('.btn');
     //Call preloader spinner function
     this.preloaderSpinner()
   },
+  // Listens for change in language title
+  computed: {
+    languageTitleChange: function(){
+      return this.languageTitle
+    },
+
+  },
   methods: {
+    // Method to get audio text to speech of translated text
+    responseSpeak() {
+      responsiveVoice.speak(this.wordTranslated, this.languageTitleChange.replace(/\s+/g,' ').trim()); 
+    },
     // function to make preloader spinner for 1000 milisecond
-    preloaderSpinner(){
+    preloaderSpinner() {
       setTimeout(() =>{
         this.loading = false
       },1500)
@@ -106,16 +122,19 @@ export default {
     }
   },
 
-    // It works when 'from' option is selected.
-    updatePairFrom(val) {
-      this.languageFrom = val;
-    },
-
-    // It works when 'to' option is selected.
-    updatePairTo(val) {
-      this.languageTo = val;
-    },
+  // It works when 'from' option is selected.
+  updatePairFrom(index) {
+    this.languageFrom = index.value;
   },
+
+  // It works when 'to' option is selected.
+  updatePairTo(index) {
+    // Language title for voice audio text to speech
+    this.languageTitle = index.text + ' Female'
+    // Language output translation
+    this.languageTo = index.value
+  },
+},
   components: {
     LanguageSelector,
     ThemeSwitcher
@@ -158,7 +177,7 @@ h1 {
 }
 
 /* Styling when btn for copying translation is disabled */
-.copy-translation-btn:disabled {
+.disable-btn:disabled {
   cursor: not-allowed;
   background-color: #808080 !important;
   color: #ffffff !important;

@@ -8,7 +8,7 @@
         <!-- When input changes it calls related method to emit selected data. -->
         <b-form-select v-model="optionFrom" @input="onOptionFromSelect">
             <option :value="null">Select an language</option>
-            <option v-for="option in languageOptions" :key="option.value" :value="option.value">{{option.text}}</option>
+            <option v-for="(option, index) in languageOptions" :key="index" :value="option">{{option.text}}</option>
         </b-form-select>
       </b-col>
 
@@ -24,7 +24,7 @@
         <!-- When input changes it calls related method to emit selected data. -->
         <b-form-select v-model="optionTo" @input="onOptionToSelect">
             <option :value="null">Select an language</option>
-            <option v-for="option in languageOptions" :key="option.value" :value="option.value">{{option.text}}</option>
+            <option v-for="(option, index) in languageOptions" :key="index" :value="option">{{option.text}}</option>
         </b-form-select>
       </b-col>
     </b-row>
