@@ -40,7 +40,7 @@
         </b-tooltip>
 
         <!-- Text to Speech Audio button -->
-        <b-button variant="outline-info" class="disable-btn m-3 px-4" @click="responseSpeak" :disabled="!this.wordTranslated">Audio</b-button>
+        <b-button variant="outline-info" class="disable-btn m-3 px-4" @click="responseSpeak" :disabled="!this.wordTranslated">Play</b-button>
       </div>
   </b-container>
 </template>
@@ -81,17 +81,16 @@ export default {
     //Call preloader spinner function
     this.preloaderSpinner()
   },
-
+  // Listens for change in language title
   computed: {
-    // Listens for change in language title
-    languageTitleChange: function() {
+    languageTitleChange: function(){
       return this.languageTitle
     },
+
   },
   methods: {
     // Method to get audio text to speech of translated text
-    responseSpeak() {	
-      //responsiveVoice.setDefaultVoice({ name: 'Fallback English', lang: 'en-US', fallbackvoice: true, timerSpeed:0 });
+    responseSpeak() {
       responsiveVoice.speak(this.wordTranslated, this.languageTitleChange.replace(/\s+/g,' ').trim()); 
     },
     // function to make preloader spinner for 1000 milisecond
