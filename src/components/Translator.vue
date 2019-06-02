@@ -103,7 +103,7 @@ export default {
     hideTooltipLater() {
         setTimeout(() => {
           this.showTooltip = false;
-        }, 5000);
+        }, 4000);
     },
       // translate() method makes translate the input's value if keyboard key "Enter" is pressed
     translate(e) {
