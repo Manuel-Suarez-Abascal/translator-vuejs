@@ -40,10 +40,6 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-# Future Features
-
-- Add text speech sound to the translation text.
-
 # Contributors
 
 - [Kamer Elciyar](https://github.com/kamer)
