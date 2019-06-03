@@ -14,7 +14,7 @@
       <!-- Language Selector Dropdown -->
       <language-selector @onLangFromSelect="updatePairFrom" @onLangToSelect="updatePairTo"></language-selector>
 
-      <p class="text-secondary">A translation app powered by <a class="vuejs-link text-decoration-none" href="https://vuejs.org/" target="_blank" rel="noopener"> Vuejs</a>, <a class="yandex-link text-decoration-none" href="https://tech.yandex.com/translate/" target="_blank" rel="noopener">Yandex API</a> & <a class="responsive-voice-link text-decoration-none" href="https://responsivevoice.org/" target="_blank" rel="noopener">ResponsiveVoice.js API</a>. Made with &#10084;&#65039; by <a class="color-info text-decoration-none" href="https://github.com/Manuel-Suarez-Abascal" target="_blank" rel="noopener">Manuel Abascal.</a></p>
+      <p class="text-secondary">A translation app powered by <a class="vuejs-link text-decoration-none" href="https://vuejs.org/" target="_blank" rel="noopener"> Vuejs</a>, <a class="yandex-link text-decoration-none" href="https://tech.yandex.com/translate/" target="_blank" rel="noopener">Yandex API</a> & <a class="responsive-voice-link text-decoration-none" href="https://responsivevoice.org/" target="_blank" rel="noopener">ResponsiveVoice.js API</a>. Made with &#10084;&#65039; by <a class="github-profile-link color-info text-decoration-none" href="https://github.com/Manuel-Suarez-Abascal" target="_blank" rel="noopener">Manuel Abascal.</a></p>
 
       <b-row>
         <b-col class="translation-container mb-3" lg="6" md="6" sm="12">
@@ -159,6 +159,11 @@ export default {
 h1 {
   color: #000;
 }
+
+.vuejs-link, .yandex-link, .responsive-voice-link, .github-profile-link {
+  font-weight: bold;
+}
+
 /* Links styling */
 .vuejs-link {
   color: #4fc08d;
