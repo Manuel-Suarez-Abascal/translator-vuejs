@@ -19,7 +19,7 @@
       <b-row>
         <b-col class="translation-container mb-3" lg="6" md="6" sm="12">
           <!-- Input field to get a value to translate -->
-          <b-form-textarea class="w-100" type="text" rows="5" v-model="inputValue" :placeholder="placeholder" @keyup="translate"></b-form-textarea>
+          <b-form-textarea class="w-100" type="text" rows="5" v-model="inputValue" :placeholder="placeholder" @keyup="translate" aria-label="Original text to be translated"></b-form-textarea>
         </b-col>
 
         <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
@@ -27,7 +27,7 @@
           <b-form-textarea id="translation-result" class="w-100" rows="5" v-if="wordTranslated" :value="wordTranslated"></b-form-textarea>
 
           <!-- If no translation it shows this message -->
-          <b-form-textarea class="w-100" rows="5" placeholder="The translation results will show here!" v-else></b-form-textarea>
+          <b-form-textarea class="w-100" rows="5" placeholder="The translation results will show here!" aria-label="Text already translated" v-else></b-form-textarea>
         </b-col>
       </b-row>
 
