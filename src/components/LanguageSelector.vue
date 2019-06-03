@@ -6,7 +6,7 @@
       </span>
       <b-col class="my-3 p-0" col lg="3" md="3" sm="10" cols="9">
         <!-- When input changes it calls related method to emit selected data. -->
-        <b-form-select class="language-selectors" v-model="optionFrom" @input="onOptionFromSelect">
+        <b-form-select class="language-selectors" v-model="optionFrom" @input="onOptionFromSelect" aria-label="Language to translate">
             <option :value="null">Select an language</option>
             <option v-for="(option, index) in languageOptions" :key="index" :value="option">{{option.text}}</option>
         </b-form-select>
@@ -22,7 +22,7 @@
       </span>
       <b-col class="my-3 p-0" col lg="3" md="3" sm="10" cols="9">
         <!-- When input changes it calls related method to emit selected data. -->
-        <b-form-select class="language-selectors" v-model="optionTo" @input="onOptionToSelect">
+        <b-form-select class="language-selectors" v-model="optionTo" @input="onOptionToSelect" aria-label="Output text translated">
             <option :value="null">Select an language</option>
             <option v-for="(option, index) in languageOptions" :key="index" :value="option">{{option.text}}</option>
         </b-form-select>

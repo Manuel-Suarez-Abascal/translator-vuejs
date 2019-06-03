@@ -14,12 +14,12 @@
       <!-- Language Selector Dropdown -->
       <language-selector @onLangFromSelect="updatePairFrom" @onLangToSelect="updatePairTo"></language-selector>
 
-      <p class="text-secondary">A translation app powered by <a class="vuejs-link text-decoration-none" href="https://vuejs.org/" target="_blank"> Vuejs</a>, <a class="yandex-link text-decoration-none" href="https://tech.yandex.com/translate/" target="_blank">Yandex API</a> & <a class="responsive-voice-link text-decoration-none" href="https://responsivevoice.org/" target="_blank">ResponsiveVoice.js API</a>. Made with &#10084;&#65039; by <a class="color-info text-decoration-none" href="https://github.com/Manuel-Suarez-Abascal" target="_blank">Manuel Abascal.</a></p>
+      <p class="text-secondary">A translation app powered by <a class="vuejs-link text-decoration-none" href="https://vuejs.org/" target="_blank" rel="noopener"> Vuejs</a>, <a class="yandex-link text-decoration-none" href="https://tech.yandex.com/translate/" target="_blank" rel="noopener">Yandex API</a> & <a class="responsive-voice-link text-decoration-none" href="https://responsivevoice.org/" target="_blank" rel="noopener">ResponsiveVoice.js API</a>. Made with &#10084;&#65039; by <a class="github-profile-link color-info text-decoration-none" href="https://github.com/Manuel-Suarez-Abascal" target="_blank" rel="noopener">Manuel Abascal.</a></p>
 
       <b-row>
         <b-col class="translation-container mb-3" lg="6" md="6" sm="12">
           <!-- Input field to get a value to translate -->
-          <b-form-textarea class="w-100" type="text" rows="5" v-model="inputValue" :placeholder="placeholder" @keyup="translate"></b-form-textarea>
+          <b-form-textarea class="w-100" type="text" rows="5" v-model="inputValue" :placeholder="placeholder" @keyup="translate" aria-label="Original text to be translated"></b-form-textarea>
         </b-col>
 
         <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
@@ -27,7 +27,7 @@
           <b-form-textarea id="translation-result" class="w-100" rows="5" v-if="wordTranslated" :value="wordTranslated"></b-form-textarea>
 
           <!-- If no translation it shows this message -->
-          <b-form-textarea class="w-100" rows="5" placeholder="The translation results will show here!" v-else></b-form-textarea>
+          <b-form-textarea class="w-100" rows="5" placeholder="The translation results will show here!" aria-label="Text already translated" v-else></b-form-textarea>
         </b-col>
       </b-row>
 
@@ -159,6 +159,11 @@ export default {
 h1 {
   color: #000;
 }
+
+.vuejs-link, .yandex-link, .responsive-voice-link, .github-profile-link {
+  font-weight: bold;
+}
+
 /* Links styling */
 .vuejs-link {
   color: #4fc08d;
