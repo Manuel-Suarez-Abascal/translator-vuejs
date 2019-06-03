@@ -13,7 +13,7 @@
       </b-col>
 
       <!-- Interchanges Language Options -->
-      <b-col class="p-0" col lg="1" md="2" sm="12" cols="12">
+      <b-col class="p-0 " col lg="1" md="2" sm="12" cols="12">
         <i  @click="interchangeLanguages" class="fa fa-exchange mt-3 ml-4 interchange-lang-btn" aria-hidden="true"></i>
       </b-col>
 
@@ -66,10 +66,15 @@ export default {
   cursor: pointer;
 }
 .interchange-lang-btn {
-  background-color: rgb(216, 216, 216);
+  background-color: rgb(209, 209, 209);
   border-radius: 8px;
   cursor: pointer;
   padding: 10px 15px;
+}
+
+.interchange-lang-btn:hover {
+  background-color: rgb(150, 148, 148);
+  transition: 0.4s background-color;
 }
 @media only screen and (max-width: 765px) {
   .interchange-lang-btn {
