@@ -14,7 +14,7 @@
       <!-- Language Selector Dropdown -->
       <language-selector @onLangFromSelect="updatePairFrom" @onLangToSelect="updatePairTo"></language-selector>
 
-      <p class="text-secondary">A translation app powered by <a class="vuejs-link text-decoration-none" href="https://vuejs.org/" target="_blank"> Vuejs</a> & <a class="yandex-link text-decoration-none" href="https://tech.yandex.com/translate/" target="_blank">Yandex's API</a>. Made by <a class="color-info text-decoration-none" href="https://github.com/Manuel-Suarez-Abascal" target="_blank">Manuel Abascal.</a></p>
+      <p class="text-secondary">A translation app powered by <a class="vuejs-link text-decoration-none" href="https://vuejs.org/" target="_blank"> Vuejs</a>, <a class="yandex-link text-decoration-none" href="https://tech.yandex.com/translate/" target="_blank">Yandex API</a> & <a class="responsive-voice-link text-decoration-none" href="https://responsivevoice.org/" target="_blank">ResponsiveVoice.js API</a>. Made with &#10084;&#65039; by <a class="color-info text-decoration-none" href="https://github.com/Manuel-Suarez-Abascal" target="_blank">Manuel Abascal.</a></p>
 
       <b-row>
         <b-col class="translation-container mb-3" lg="6" md="6" sm="12">
@@ -174,6 +174,14 @@ h1 {
 
 .yandex-link:hover {
   color: #9e1104;
+}
+
+.responsive-voice-link {
+  color: #f37548;
+}
+
+.responsive-voice-link:hover {
+  color: #f74809;
 }
 
 /* Styling when btn for copying translation is disabled */
