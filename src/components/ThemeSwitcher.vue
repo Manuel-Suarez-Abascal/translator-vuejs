@@ -16,10 +16,10 @@ export default {
             checked: true
         }
     },
-    // Toggle class in app id to create dark/light theme
     methods: {
+        // Toggle class in app id to create dark/light theme
         changeThemeColor(){
-            var body = document.getElementById("app");
+            var body = document.getElementById("app-wrapper");
             var currentClass = body.className;
             body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
         }
