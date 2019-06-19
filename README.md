@@ -49,6 +49,10 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+# Future Enhancement
+
+- Disable 'play' button if language audio is not available.
+
 # Contributors
 
 - [Kamer Elciyar](https://github.com/kamer)
