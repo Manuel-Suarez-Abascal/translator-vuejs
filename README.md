@@ -52,6 +52,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 # Future Enhancement
 
 - Disable 'play' button if language audio is not available.
+- Add theme selection to local storage.
 
 # Contributors
 
