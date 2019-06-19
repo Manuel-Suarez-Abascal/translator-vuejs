@@ -46,7 +46,6 @@
 </template>
 
 <script>
-
 // Import axios to the component
 import axios from 'axios';
 // Import language selector component
@@ -77,7 +76,7 @@ export default {
   },
   mounted() {
     //Calls button to copy translation with clipboard.js
-    new ClipboardJS('.btn');
+    new ClipboardJS('.btn')
     //Call preloader spinner function
     this.preloaderSpinner()
   },
@@ -91,7 +90,7 @@ export default {
   methods: {
     // Method to get audio text to speech of translated text
     responseSpeak() {
-      responsiveVoice.speak(this.wordTranslated, this.languageTitleChange.replace(/\s+/g,' ').trim()); 
+      responsiveVoice.speak(this.wordTranslated, this.languageTitle.replace(/\s+/g,' ').trim())
     },
     // function to make preloader spinner for 1000 milisecond
     preloaderSpinner() {
