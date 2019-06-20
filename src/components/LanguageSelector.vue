@@ -6,15 +6,29 @@
       </span>
       <b-col class="my-3 p-0" col lg="3" md="3" sm="10" cols="9">
         <!-- When input changes it calls related method to emit selected data. -->
-        <b-form-select class="language-selectors" v-model="optionFrom" @input="onOptionFromSelect" aria-label="Language to translate">
-            <option :value="null">Select an language</option>
-            <option v-for="(option, index) in languageOptions" :key="index" :value="option">{{option.text}}</option>
+        <b-form-select
+          class="language-selectors"
+          v-model="optionFrom"
+          @input="onOptionFromSelect"
+          aria-label="Language to translate"
+        >
+          <option :value="null">Select an language</option>
+          <option
+            v-for="(option, index) in languageOptions"
+            :key="index"
+            :value="option"
+            >{{ option.text }}</option
+          >
         </b-form-select>
       </b-col>
 
       <!-- Interchanges Language Options -->
       <b-col class="p-0 " col lg="1" md="2" sm="12" cols="12">
-        <i  @click="interchangeLanguages" class="fa fa-exchange mt-3 ml-4 interchange-lang-btn" aria-hidden="true"></i>
+        <i
+          @click="interchangeLanguages"
+          class="fa fa-exchange mt-3 ml-4 interchange-lang-btn"
+          aria-hidden="true"
+        ></i>
       </b-col>
 
       <span class="mr-2 ml-4 my-4">
@@ -22,9 +36,19 @@
       </span>
       <b-col class="my-3 p-0" col lg="3" md="3" sm="10" cols="9">
         <!-- When input changes it calls related method to emit selected data. -->
-        <b-form-select class="language-selectors" v-model="optionTo" @input="onOptionToSelect" aria-label="Output text translated">
-            <option :value="null">Select an language</option>
-            <option v-for="(option, index) in languageOptions" :key="index" :value="option">{{option.text}}</option>
+        <b-form-select
+          class="language-selectors"
+          v-model="optionTo"
+          @input="onOptionToSelect"
+          aria-label="Output text translated"
+        >
+          <option :value="null">Select an language</option>
+          <option
+            v-for="(option, index) in languageOptions"
+            :key="index"
+            :value="option"
+            >{{ option.text }}</option
+          >
         </b-form-select>
       </b-col>
     </b-row>
@@ -32,33 +56,30 @@
 </template>
 
 <script>
-
-import axios from 'axios'
 // Language pairs are fetched from json file.
-import langcodes from './../assets/langcodes.json'
+import langcodes from "./../assets/langcodes.json";
 
 export default {
   name: "LanguageSelector",
   data() {
-      return {
-        languageOptions: langcodes,
-        optionFrom: null,
-        optionTo: null
-      }
+    return {
+      languageOptions: langcodes,
+      optionFrom: null,
+      optionTo: null
+    };
   },
   methods: {
-      onOptionFromSelect() {
-        this.$emit('onLangFromSelect', this.optionFrom)
-      },
-      onOptionToSelect() {
-        this.$emit('onLangToSelect', this.optionTo)
-      },
-      // Interchange Language Options
-      interchangeLanguages(){
-        this.optionFrom = [this.optionTo, this.optionTo = this.optionFrom][0];
-      }
+    onOptionFromSelect() {
+      this.$emit("onLangFromSelect", this.optionFrom);
+    },
+    onOptionToSelect() {
+      this.$emit("onLangToSelect", this.optionTo);
+    },
+    // Interchange Language Options
+    interchangeLanguages() {
+      this.optionFrom = [this.optionTo, (this.optionTo = this.optionFrom)][0];
+    }
   }
-
 };
 </script>
 <style scoped>
@@ -81,5 +102,4 @@ export default {
     margin-top: 0 !important;
   }
 }
-
 </style>
