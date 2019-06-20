@@ -1,60 +1,66 @@
 <template>
-    <div>
-        <!-- Theme Dark/Light Switcher -->
-        <b-form-checkbox class="theme-switcher" v-model="checked" name="check-button" @change="changeThemeColor" switch>
-            <p v-if="checked">Dark-Theme</p>
-            <p v-else>Light-Theme</p>
-        </b-form-checkbox>
-    </div>
+  <div>
+    <!-- Theme Dark/Light Switcher -->
+    <b-form-checkbox
+      class="theme-switcher"
+      v-model="checked"
+      name="check-button"
+      @change="changeThemeColor"
+      switch
+    >
+      <p v-if="checked">Dark-Theme</p>
+      <p v-else>Light-Theme</p>
+    </b-form-checkbox>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "ThemeSwitcher",
-    data() {
-        return {
-            checked: true
-        }
-    },
-    methods: {
-        // Toggle class in app id to create dark/light theme
-        changeThemeColor(){
-            var body = document.getElementById("app-wrapper");
-            var currentClass = body.className;
-            body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
-        }
+  name: "ThemeSwitcher",
+  data() {
+    return {
+      checked: true
+    };
+  },
+  methods: {
+    // Toggle class in app id to create dark/light theme
+    changeThemeColor() {
+      var body = document.getElementById("app-wrapper");
+      var currentClass = body.className;
+      body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
     }
-}
+  }
+};
 </script>
 
 <style>
 .theme-switcher label:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 /* Dark & Light mode styling */
 .dark-mode {
   background-color: #111;
-  color: #fff; 
+  color: #fff;
 }
 
 .light-mode {
   background-color: #ffff;
-  color: #111; 
+  color: #111;
 }
 
 .dark-mode span {
-    color: #fff;
+  color: #fff;
 }
 
 .dark-mode h1 {
-    color: #fff;
+  color: #fff;
 }
 
 .dark-mode p {
-    color: #fff;
+  color: #fff;
 }
 
-.light-mode h1{
-    color: #000;
+.light-mode h1 {
+  color: #000;
 }
 </style>
