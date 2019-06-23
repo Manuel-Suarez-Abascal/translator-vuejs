@@ -192,13 +192,13 @@ export default {
         // Axios get() request using Yandex API
         axios
           .get(
-            "https://translate.yandex.net/api/v1.5/tr.json/translate?lang=" +
-              this.languageFrom +
-              "-" +
-              this.languageTo +
-              "&key=trnsl.1.1.20190518T054559Z.6098481762cecacb.6b721345d2262aa024e24b0aa7bbc42011422525&text=" +
-              this.inputValue +
-              "&format=plain"
+            `https://translate.yandex.net/api/v1.5/tr.json/translate?lang=${
+              this.languageFrom
+            }-${
+              this.languageTo
+            }&key=trnsl.1.1.20190518T054559Z.6098481762cecacb.6b721345d2262aa024e24b0aa7bbc42011422525&text=${
+              this.inputValue
+            }&format=plain`
           )
           .then(response => {
             // Stores input value translation into translated result
