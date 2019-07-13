@@ -5,7 +5,6 @@
             @click="clearValue"
         ></button>
     </div>
-    
 </template>
 
 <script>
@@ -15,11 +14,19 @@ export default {
         return {
 
         }
+    },
+    methods: {
+        clearValue() {
+            this.$emit("clearText");
+        },
     }
 }
 </script>
 
 <style scoped>
+#clear-text-btn {
+    float: right;
+}
 .close-icon {
     border:1px solid transparent;
     background-color: transparent;
@@ -27,6 +34,7 @@ export default {
     vertical-align: middle;
     outline: 0;
     cursor: pointer;
+    position: absolute;
 }
 .close-icon:after {
 	content: "X";
@@ -37,8 +45,7 @@ export default {
 	background-color: rgb(224, 44, 44);
 	z-index:1;
 	right: 35px;
-	top: 0;
-	bottom: 0;
+	bottom: 105px;
 	margin-top: 10px;
 	padding: 2px;
 	border-radius: 50%;
