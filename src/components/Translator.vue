@@ -232,11 +232,10 @@ export default {
       this.languageTo = index.value;
     },
     clearTextValue(){
-      console.log('clicked');
-        // Resets input field
-        this.inputValue = "";
-        // Resets translation field
-        this.wordTranslated = "";
+      // Resets input field
+      this.inputValue = "";
+      // Resets translation field
+      this.wordTranslated = "";
     }
   },
   components: {
