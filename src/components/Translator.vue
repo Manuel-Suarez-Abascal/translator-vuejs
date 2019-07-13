@@ -66,7 +66,12 @@
             :placeholder="placeholder"
             @keyup="translate"
             aria-label="Original text to be translated"
-          ></b-form-textarea>
+          > 
+          </b-form-textarea>
+
+          <!-- Clear Text Button Component-->
+          <ClearTextBtn />
+
         </b-col>
 
         <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
@@ -77,8 +82,9 @@
             rows="5"
             v-if="wordTranslated"
             :value="wordTranslated"
-          ></b-form-textarea>
-
+          >
+          </b-form-textarea>
+          
           <!-- If no translation it shows this message -->
           <b-form-textarea
             class="w-100"
@@ -87,6 +93,8 @@
             aria-label="Text already translated"
             v-else
           ></b-form-textarea>
+          <!-- Clear Text Button Component-->
+            <ClearTextBtn />
         </b-col>
       </b-row>
 
@@ -129,6 +137,8 @@
 import axios from "axios";
 // Import language selector component
 import LanguageSelector from "./LanguageSelector";
+// Import clear text btn component
+import ClearTextBtn from "./ClearTextBtn";
 // Import theme switcher component
 import ThemeSwitcher from "./ThemeSwitcher";
 // Import clipboard.js
@@ -225,7 +235,8 @@ export default {
   },
   components: {
     LanguageSelector,
-    ThemeSwitcher
+    ThemeSwitcher,
+    ClearTextBtn
   }
 };
 </script>
