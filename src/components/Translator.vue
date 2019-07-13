@@ -59,26 +59,34 @@
         <b-col class="translation-container mb-3" lg="6" md="6" sm="12">
           <!-- Input field to get a value to translate -->
           <b-form-textarea
-            class="w-100"
+            class="w-100 textarea-container"
             type="text"
             rows="5"
             v-model="inputValue"
             :placeholder="placeholder"
             @keyup="translate"
             aria-label="Original text to be translated"
-          ></b-form-textarea>
+          > 
+          </b-form-textarea>
+
+          <!-- Clear Text Button Component-->
+          <div v-show="this.inputValue">
+            <ClearTextBtn @clearText="clearTextValue" />
+          </div>
+
         </b-col>
 
         <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
           <!-- Outputs the translation results -->
           <b-form-textarea
             id="translation-result"
-            class="w-100"
+            class="w-100 textarea-container"
             rows="5"
             v-if="wordTranslated"
             :value="wordTranslated"
-          ></b-form-textarea>
-
+          >
+          </b-form-textarea>
+          
           <!-- If no translation it shows this message -->
           <b-form-textarea
             class="w-100"
@@ -90,36 +98,38 @@
         </b-col>
       </b-row>
 
-      <!-- Button to copy translated content using clipboard.js -->
-      <b-button
-        id="copyBtn"
-        class="disable-btn my-4"
-        :disabled="!this.wordTranslated"
-        :data-clipboard-text="this.wordTranslated"
-        variant="outline-success"
-        @click="showTooltip = true"
-        >Copy Translation</b-button
-      >
+      <div class="btns-container">
+        <!-- Button to copy translated content using clipboard.js -->
+        <b-button
+          id="copyBtn"
+          class="disable-btn my-4"
+          :disabled="!this.wordTranslated"
+          :data-clipboard-text="this.wordTranslated"
+          variant="outline-success"
+          @click="showTooltip = true"
+          >Copy Translation</b-button
+        >
 
-      <!-- Tooltip will show only when text is translated & button clicked -->
-      <b-tooltip
-        triggers="click"
-        :show.sync="showTooltip"
-        @shown="hideTooltipLater"
-        target="copyBtn"
-        placement="bottom"
-      >
-        <strong>Text Copied</strong>
-      </b-tooltip>
-
-      <!-- Text to Speech Audio button -->
-      <b-button
-        variant="outline-info"
-        class="disable-btn m-3 px-4"
-        @click="responseSpeak"
-        :disabled="!this.wordTranslated"
-        >Play</b-button
-      >
+        <!-- Tooltip will show only when text is translated & button clicked -->
+        <b-tooltip
+          triggers="click"
+          :show.sync="showTooltip"
+          @shown="hideTooltipLater"
+          target="copyBtn"
+          placement="bottom"
+        >
+          <strong>Text Copied</strong>
+        </b-tooltip>
+      
+        <!-- Text to Speech Audio button -->
+        <b-button
+          variant="outline-info"
+          class="disable-btn m-3 px-4"
+          @click="responseSpeak"
+          :disabled="!this.wordTranslated"
+          >Play</b-button
+        >
+      </div>
     </div>
   </b-container>
 </template>
@@ -129,6 +139,8 @@
 import axios from "axios";
 // Import language selector component
 import LanguageSelector from "./LanguageSelector";
+// Import clear text btn component
+import ClearTextBtn from "./ClearTextBtn";
 // Import theme switcher component
 import ThemeSwitcher from "./ThemeSwitcher";
 // Import clipboard.js
@@ -203,9 +215,6 @@ export default {
           .then(response => {
             // Stores input value translation into translated result
             this.wordTranslated = response.data.text[0];
-
-            // Resets input field
-            this.inputValue = "";
           });
       }
     },
@@ -221,11 +230,19 @@ export default {
       this.languageTitle = index.text + " Female";
       // Language output translation
       this.languageTo = index.value;
+    },
+    clearTextValue(){
+      console.log('clicked');
+        // Resets input field
+        this.inputValue = "";
+        // Resets translation field
+        this.wordTranslated = "";
     }
   },
   components: {
     LanguageSelector,
-    ThemeSwitcher
+    ThemeSwitcher,
+    ClearTextBtn
   }
 };
 </script>
@@ -277,6 +294,11 @@ h1 {
 
 .responsive-voice-link:hover {
   color: #f74809;
+}
+
+/* textarea container styles */
+.textarea-container {
+  padding-right: 45px;
 }
 
 /* Styling when btn for copying translation is disabled */
