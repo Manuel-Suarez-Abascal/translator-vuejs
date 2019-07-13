@@ -70,7 +70,9 @@
           </b-form-textarea>
 
           <!-- Clear Text Button Component-->
-          <ClearTextBtn />
+          <div v-if="this.inputValue">
+            <ClearTextBtn />
+          </div>
 
         </b-col>
 
@@ -93,8 +95,12 @@
             aria-label="Text already translated"
             v-else
           ></b-form-textarea>
+
           <!-- Clear Text Button Component-->
+          <div v-if="this.inputValue">
             <ClearTextBtn />
+          </div>
+          
         </b-col>
       </b-row>
 
