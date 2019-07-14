@@ -185,13 +185,13 @@ export default {
         this.languageTitle.replace(/\s+/g, " ").trim()
       );
     },
-    // function to make preloader spinner for 1000 milisecond
+    // function to make preloader spinner for 1500 miliseconds
     preloaderSpinner() {
       setTimeout(() => {
         this.loading = false;
       }, 1500);
     },
-    // function to fade away the tooltip
+    // function to fade away the tooltip after 4000 miliseconds
     hideTooltipLater() {
       setTimeout(() => {
         this.showTooltip = false;
@@ -199,7 +199,7 @@ export default {
     },
     // translate() method makes translate the input's value if keyboard key "Enter" is pressed
     translate(e) {
-      // Checks if enter key has been pressed
+      // Checks if enter key has been pressed & calls Axios on true
       if (e.key == "Enter") {
         // Axios get() request using Yandex API
         axios
@@ -218,12 +218,10 @@ export default {
           });
       }
     },
-
     // It works when 'from' option is selected.
     updatePairFrom(index) {
       this.languageFrom = index.value;
     },
-
     // It works when 'to' option is selected.
     updatePairTo(index) {
       // Language title for voice audio text to speech
@@ -232,11 +230,10 @@ export default {
       this.languageTo = index.value;
     },
     clearTextValue(){
-      console.log('clicked');
-        // Resets input field
-        this.inputValue = "";
-        // Resets translation field
-        this.wordTranslated = "";
+      // Resets input field
+      this.inputValue = "";
+      // Resets translation field
+      this.wordTranslated = "";
     }
   },
   components: {
