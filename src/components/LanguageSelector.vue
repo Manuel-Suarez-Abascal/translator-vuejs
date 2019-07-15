@@ -102,11 +102,6 @@ export default {
 
 .interchange-lang-btn:hover {
   background-color: rgb(128, 125, 125);
-  transition: 0.2s background-color, 0.2s transform;
-}
-
-.interchange-lang-btn:hover {
-  background-color: rgb(128, 125, 125);
   transition: 0.4s background-color, 0.1s transform;
 }
 
