@@ -24,11 +24,13 @@
 
       <!-- Interchanges Language Options -->
       <b-col class="p-0 " col lg="1" md="2" sm="12" cols="12">
-        <i
+        <button
           @click="interchangeLanguages"
-          class="fa fa-exchange mt-3 ml-4 interchange-lang-btn"
+          :class="{ rotated: rotated }"
+          :disabled="this.optionTo === null || this.optionFrom === null"
+          class="fa fa-exchange mt-3 ml-4 interchange-lang-btn btn disable-btn"
           aria-hidden="true"
-        ></i>
+        ></button>
       </b-col>
 
       <span class="mr-2 ml-4 my-4">
@@ -65,7 +67,8 @@ export default {
     return {
       languageOptions: langcodes,
       optionFrom: null,
-      optionTo: null
+      optionTo: null,
+      rotated: false
     };
   },
   methods: {
@@ -78,7 +81,9 @@ export default {
     // Interchange Language Options
     interchangeLanguages() {
       this.optionFrom = [this.optionTo, (this.optionTo = this.optionFrom)][0];
-    }
+      // Remove rotated class name
+      this.rotated = !this.rotated;
+    },
   }
 };
 </script>
@@ -87,16 +92,28 @@ export default {
   cursor: pointer;
 }
 .interchange-lang-btn {
-  background-color: rgb(209, 209, 209);
-  border-radius: 8px;
+  background-color: rgb(204, 201, 201);
+  border-radius: 50px;
+  border: none;
+  color: #000;
   cursor: pointer;
   padding: 10px 15px;
 }
 
 .interchange-lang-btn:hover {
-  background-color: rgb(150, 148, 148);
-  transition: 0.4s background-color;
+  background-color: rgb(128, 125, 125);
+  transition: 0.2s background-color, 0.2s transform;
 }
+
+.interchange-lang-btn:hover {
+  background-color: rgb(128, 125, 125);
+  transition: 0.4s background-color, 0.1s transform;
+}
+
+.interchange-lang-btn.rotated {
+  transform: rotate(180deg);
+}
+
 @media only screen and (max-width: 765px) {
   .interchange-lang-btn {
     margin-top: 0 !important;
