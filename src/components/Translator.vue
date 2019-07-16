@@ -98,26 +98,24 @@
         </b-col>
       </b-row>
 
-      <div class="btns-container">
+      <div class="buttons-container">
         <b-button
           id="copyBtn"
-          class="disable-btn my-4"
+          class="disable-btn copy-text-btn my-4 p-2 bg-white"
           :disabled="!this.inputValue"
           :data-clipboard-text="this.inputValue"
-          variant="outline-success"
-          @click="showTooltipSourceText = true"
-          ><i class="fas fa-copy"></i></b-button
-        >
+          @click="showTooltipSourceText = true"> 
+            <i class="fas fa-copy"></i>
+        </b-button>
         <!-- Button to copy translated content using clipboard.js -->
         <b-button
           id="copyBtn"
-          class="disable-btn my-4"
+          class="disable-btn copy-text-btn my-4 p-2 bg-white"
           :disabled="!this.wordTranslated"
           :data-clipboard-text="this.wordTranslated"
-          variant="outline-success"
           @click="showTooltipTranslatedText = true"
-          ><i class="fas fa-copy"></i></b-button
-        >
+          ><i class="fas fa-copy"></i>
+        </b-button>
 
         <!-- Tooltip will show only when source text is available & button clicked -->
         <b-tooltip
@@ -125,9 +123,8 @@
           :show.sync="showTooltipSourceText"
           @shown="hideTooltipLater"
           target="copyBtn"
-          placement="left"
-        >
-          <strong>Source Text Copied</strong>
+          placement="left">
+          <strong>Text Copied</strong>
         </b-tooltip>
 
         <!-- Tooltip will show only when translated text is available & button clicked -->
@@ -136,18 +133,16 @@
           :show.sync="showTooltipTranslatedText"
           @shown="hideTooltipLater"
           target="copyBtn"
-          placement="left"
-        >
+          placement="left">
           <strong>Translated Text Copied</strong>
         </b-tooltip>
       
         <!-- Text to Speech Audio button -->
         <b-button
-          variant="outline-info"
-          class="disable-btn m-3 px-4"
+          class="disable-btn m-3 px-4 border-0"
           @click="responseSpeak"
           :disabled="!this.wordTranslated"
-          >Play</b-button
+          ><i class="fas fa-microphone"></i></b-button
         >
       </div>
     </div>
@@ -320,11 +315,23 @@ h1 {
   padding-right: 45px;
 }
 
-/* Styling when btn for copying translation is disabled */
+/* Styling when btn for copying text buttons */
+.copy-text-btn {
+  border: none;
+}
 .disable-btn:disabled {
   cursor: not-allowed;
-  background-color: #808080 !important;
-  color: #ffffff !important;
+}
+/* Overrides vue-bootstrap class on buttons */
+.btn-secondary {
+  color: #000 !important; 
+  background-color: #fff !important; 
   border: none !important;
 }
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border:1 px solid transparent !important;
+}
+
 </style>
