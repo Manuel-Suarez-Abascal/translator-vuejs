@@ -101,12 +101,12 @@
       <div class="btns-container">
         <b-button
           id="copyBtn"
-          class="disable-btn my-4 mr-auto"
+          class="disable-btn my-4"
           :disabled="!this.inputValue"
           :data-clipboard-text="this.inputValue"
           variant="outline-success"
           @click="showTooltipSourceText = true"
-          >Copy Source text</b-button
+          ><i class="fas fa-copy"></i></b-button
         >
         <!-- Button to copy translated content using clipboard.js -->
         <b-button
@@ -116,7 +116,7 @@
           :data-clipboard-text="this.wordTranslated"
           variant="outline-success"
           @click="showTooltipTranslatedText = true"
-          >Copy Translation</b-button
+          ><i class="fas fa-copy"></i></b-button
         >
 
         <!-- Tooltip will show only when source text is available & button clicked -->
@@ -217,7 +217,7 @@ export default {
       setTimeout(() => {
         this.showTooltipSourceText = false;
         this.showTooltipTranslatedText = false;
-      }, 4000);
+      }, 1000);
     },
     // translate() method makes translate the input's value if keyboard key "Enter" is pressed
     translate(e) {
