@@ -6,12 +6,12 @@
         variant="success"
         style="width: 6rem; height: 6rem;"
         label="Text Centered Large Spinner"
-        type="grow"
-      ></b-spinner>
+        type="grow">
+      </b-spinner>
     </div>
 
     <div v-else>
-      <img class="mt-5" alt="Vue logo" src="../assets/logo.png" />
+      <img class="mt-2" alt="Vue logo" src="../assets/logo.png" />
       <h1 class="my-4 h1">{{ msg }}</h1>
       <!-- Theme Color Switcher Component -->
       <theme-switcher></theme-switcher>
@@ -56,17 +56,17 @@
       </p>
 
       <b-row>
-        <b-col class="translation-container mb-3" lg="6" md="6" sm="12">
+        <b-col class=" mb-3" lg="6" md="6" sm="12">
           <!-- Input field to get a value to translate -->
           <b-form-textarea
             class="w-100 textarea-container"
             type="text"
-            rows="5"
+            rows="9"
             v-model="inputValue"
             :placeholder="placeholder"
             @keyup="translate"
             aria-label="Original text to be translated"
-          > 
+          >
           </b-form-textarea>
 
           <!-- Clear Text Button Component-->
@@ -74,47 +74,14 @@
             <ClearTextBtn @clearText="clearTextValue" />
           </div>
 
-        </b-col>
-
-        <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
-          <!-- Outputs the translation results -->
-          <b-form-textarea
-            id="translation-result"
-            class="w-100 textarea-container"
-            rows="5"
-            v-if="wordTranslated"
-            :value="wordTranslated"
-          >
-          </b-form-textarea>
-          
-          <!-- If no translation it shows this message -->
-          <b-form-textarea
-            class="w-100"
-            rows="5"
-            placeholder="The translation results will show here!"
-            aria-label="Text already translated"
-            v-else
-          ></b-form-textarea>
-        </b-col>
-      </b-row>
-
-      <div class="buttons-container">
-        <b-button
+          <!-- Button to copy source text -->
+          <b-button
           id="copyBtn"
-          class="disable-btn copy-text-btn my-4 p-2 bg-white"
+          class="disable-btn textarea-buttons source-text-btn p-2 bg-white"
           :disabled="!this.inputValue"
           :data-clipboard-text="this.inputValue"
           @click="showTooltipSourceText = true"> 
             <i class="fas fa-copy"></i>
-        </b-button>
-        <!-- Button to copy translated content using clipboard.js -->
-        <b-button
-          id="copyBtn"
-          class="disable-btn copy-text-btn my-4 p-2 bg-white"
-          :disabled="!this.wordTranslated"
-          :data-clipboard-text="this.wordTranslated"
-          @click="showTooltipTranslatedText = true"
-          ><i class="fas fa-copy"></i>
         </b-button>
 
         <!-- Tooltip will show only when source text is available & button clicked -->
@@ -127,24 +94,57 @@
           <strong>Text Copied</strong>
         </b-tooltip>
 
-        <!-- Tooltip will show only when translated text is available & button clicked -->
-        <b-tooltip
-          triggers="click"
-          :show.sync="showTooltipTranslatedText"
-          @shown="hideTooltipLater"
-          target="copyBtn"
-          placement="left">
-          <strong>Translated Text Copied</strong>
-        </b-tooltip>
-      
-        <!-- Text to Speech Audio button -->
-        <b-button
-          class="disable-btn m-3 px-4 border-0"
-          @click="responseSpeak"
-          :disabled="!this.wordTranslated"
-          ><i class="fas fa-microphone"></i></b-button
-        >
-      </div>
+        </b-col>
+
+        <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
+          <!-- Outputs the translation results -->
+          <b-form-textarea
+            id="translation-result"
+            class="w-100 textarea-container"
+            rows="9"
+            v-if="wordTranslated"
+            :value="wordTranslated"
+          >
+          </b-form-textarea>
+          
+          <!-- If no translation it shows this message -->
+          <b-form-textarea
+            class="w-100"
+            rows="9"
+            placeholder="The translation results will show here!"
+            aria-label="Text already translated"
+            v-else
+          ></b-form-textarea>
+          <!-- Button to copy translated content using clipboard.js -->
+          <b-button
+            id="copyBtn2"
+            class="disable-btn textarea-buttons translation-text-btn p-2 bg-white"
+            :disabled="!this.wordTranslated"
+            :data-clipboard-text="this.wordTranslated"
+            @click="showTooltipTranslatedText = true"
+            ><i class="fas fa-copy"></i>
+          </b-button>
+
+          <!-- Tooltip will show only when translated text is available & button clicked -->
+          <b-tooltip
+            triggers="click"
+            :show.sync="showTooltipTranslatedText"
+            @shown="hideTooltipLater"
+            target="copyBtn2"
+            placement="left">
+            <strong>Text Copied</strong>
+          </b-tooltip>
+
+          <!-- Text to Speech Audio button -->
+          <b-button
+            class="disable-btn p-2 border-0 textarea-buttons"
+            @click="responseSpeak"
+            :disabled="!this.wordTranslated"
+            ><i class="fas fa-microphone"></i></b-button
+          >
+
+        </b-col>
+      </b-row>
     </div>
   </b-container>
 </template>
@@ -312,13 +312,18 @@ h1 {
 
 /* textarea container styles */
 .textarea-container {
-  padding-right: 45px;
+  padding-right: 50px !important;
 }
 
 /* Styling when btn for copying text buttons */
-.copy-text-btn {
+.textarea-buttons {
   border: none;
+  position: relative;
+  bottom: 45px;
+  float: right;
+  margin-right: 19px;
 }
+
 .disable-btn:disabled {
   cursor: not-allowed;
 }

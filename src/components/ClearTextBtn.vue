@@ -45,7 +45,7 @@ export default {
 	background-color: rgb(224, 44, 44);
 	z-index:1;
 	right: 35px;
-	bottom: 105px;
+	bottom: 203px;
 	margin-top: 10px;
 	padding: 2px;
 	border-radius: 50%;
