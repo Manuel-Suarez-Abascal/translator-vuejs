@@ -99,6 +99,15 @@
       </b-row>
 
       <div class="btns-container">
+        <b-button
+          id="copyBtn"
+          class="disable-btn my-4 mr-auto"
+          :disabled="!this.inputValue"
+          :data-clipboard-text="this.inputValue"
+          variant="outline-success"
+          @click="showTooltipSourceText = true"
+          >Copy Source text</b-button
+        >
         <!-- Button to copy translated content using clipboard.js -->
         <b-button
           id="copyBtn"
@@ -106,19 +115,30 @@
           :disabled="!this.wordTranslated"
           :data-clipboard-text="this.wordTranslated"
           variant="outline-success"
-          @click="showTooltip = true"
+          @click="showTooltipTranslatedText = true"
           >Copy Translation</b-button
         >
 
-        <!-- Tooltip will show only when text is translated & button clicked -->
+        <!-- Tooltip will show only when source text is available & button clicked -->
         <b-tooltip
           triggers="click"
-          :show.sync="showTooltip"
+          :show.sync="showTooltipSourceText"
           @shown="hideTooltipLater"
           target="copyBtn"
-          placement="bottom"
+          placement="left"
         >
-          <strong>Text Copied</strong>
+          <strong>Source Text Copied</strong>
+        </b-tooltip>
+
+        <!-- Tooltip will show only when translated text is available & button clicked -->
+        <b-tooltip
+          triggers="click"
+          :show.sync="showTooltipTranslatedText"
+          @shown="hideTooltipLater"
+          target="copyBtn"
+          placement="left"
+        >
+          <strong>Translated Text Copied</strong>
         </b-tooltip>
       
         <!-- Text to Speech Audio button -->
@@ -162,7 +182,8 @@ export default {
       // Loading = true to show Preloader Spinner Animation
       loading: true,
       // Tooltip
-      showTooltip: false
+      showTooltipSourceText: false,
+      showTooltipTranslatedText: false
     };
   },
   mounted() {
@@ -194,7 +215,8 @@ export default {
     // function to fade away the tooltip after 4000 miliseconds
     hideTooltipLater() {
       setTimeout(() => {
-        this.showTooltip = false;
+        this.showTooltipSourceText = false;
+        this.showTooltipTranslatedText = false;
       }, 4000);
     },
     // translate() method makes translate the input's value if keyboard key "Enter" is pressed
