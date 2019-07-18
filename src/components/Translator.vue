@@ -6,12 +6,12 @@
         variant="success"
         style="width: 6rem; height: 6rem;"
         label="Text Centered Large Spinner"
-        type="grow"
-      ></b-spinner>
+        type="grow">
+      </b-spinner>
     </div>
 
     <div v-else>
-      <img class="mt-5" alt="Vue logo" src="../assets/logo.png" />
+      <img class="mt-2" alt="Vue logo" src="../assets/logo.png" />
       <h1 class="my-4 h1">{{ msg }}</h1>
       <!-- Theme Color Switcher Component -->
       <theme-switcher></theme-switcher>
@@ -56,23 +56,43 @@
       </p>
 
       <b-row>
-        <b-col class="translation-container mb-3" lg="6" md="6" sm="12">
+        <b-col class=" mb-3" lg="6" md="6" sm="12">
           <!-- Input field to get a value to translate -->
           <b-form-textarea
             class="w-100 textarea-container"
             type="text"
-            rows="5"
+            rows="9"
             v-model="inputValue"
             :placeholder="placeholder"
             @keyup="translate"
             aria-label="Original text to be translated"
-          > 
+          >
           </b-form-textarea>
 
           <!-- Clear Text Button Component-->
           <div v-show="this.inputValue">
             <ClearTextBtn @clearText="clearTextValue" />
           </div>
+
+          <!-- Button to copy source text -->
+          <b-button
+          id="copyBtn"
+          class="disable-btn textarea-buttons source-text-btn p-2 bg-white"
+          :disabled="!this.inputValue"
+          :data-clipboard-text="this.inputValue"
+          @click="showTooltipSourceText = true"> 
+            <i class="fas fa-copy"></i>
+        </b-button>
+
+        <!-- Tooltip will show only when source text is available & button clicked -->
+        <b-tooltip
+          triggers="click"
+          :show.sync="showTooltipSourceText"
+          @shown="hideTooltipLater"
+          target="copyBtn"
+          placement="left">
+          <strong>Text Copied</strong>
+        </b-tooltip>
 
         </b-col>
 
@@ -81,7 +101,7 @@
           <b-form-textarea
             id="translation-result"
             class="w-100 textarea-container"
-            rows="5"
+            rows="9"
             v-if="wordTranslated"
             :value="wordTranslated"
           >
@@ -90,46 +110,41 @@
           <!-- If no translation it shows this message -->
           <b-form-textarea
             class="w-100"
-            rows="5"
+            rows="9"
             placeholder="The translation results will show here!"
             aria-label="Text already translated"
             v-else
           ></b-form-textarea>
+          <!-- Button to copy translated content using clipboard.js -->
+          <b-button
+            id="copyBtn2"
+            class="disable-btn textarea-buttons translation-text-btn p-2 bg-white"
+            :disabled="!this.wordTranslated"
+            :data-clipboard-text="this.wordTranslated"
+            @click="showTooltipTranslatedText = true"
+            ><i class="fas fa-copy"></i>
+          </b-button>
+
+          <!-- Tooltip will show only when translated text is available & button clicked -->
+          <b-tooltip
+            triggers="click"
+            :show.sync="showTooltipTranslatedText"
+            @shown="hideTooltipLater"
+            target="copyBtn2"
+            placement="left">
+            <strong>Text Copied</strong>
+          </b-tooltip>
+
+          <!-- Text to Speech Audio button -->
+          <b-button
+            class="disable-btn p-2 border-0 textarea-buttons"
+            @click="responseSpeak"
+            :disabled="!this.wordTranslated"
+            ><i class="fas fa-microphone"></i></b-button
+          >
+
         </b-col>
       </b-row>
-
-      <div class="btns-container">
-        <!-- Button to copy translated content using clipboard.js -->
-        <b-button
-          id="copyBtn"
-          class="disable-btn my-4"
-          :disabled="!this.wordTranslated"
-          :data-clipboard-text="this.wordTranslated"
-          variant="outline-success"
-          @click="showTooltip = true"
-          >Copy Translation</b-button
-        >
-
-        <!-- Tooltip will show only when text is translated & button clicked -->
-        <b-tooltip
-          triggers="click"
-          :show.sync="showTooltip"
-          @shown="hideTooltipLater"
-          target="copyBtn"
-          placement="bottom"
-        >
-          <strong>Text Copied</strong>
-        </b-tooltip>
-      
-        <!-- Text to Speech Audio button -->
-        <b-button
-          variant="outline-info"
-          class="disable-btn m-3 px-4"
-          @click="responseSpeak"
-          :disabled="!this.wordTranslated"
-          >Play</b-button
-        >
-      </div>
     </div>
   </b-container>
 </template>
@@ -162,7 +177,8 @@ export default {
       // Loading = true to show Preloader Spinner Animation
       loading: true,
       // Tooltip
-      showTooltip: false
+      showTooltipSourceText: false,
+      showTooltipTranslatedText: false
     };
   },
   mounted() {
@@ -194,8 +210,9 @@ export default {
     // function to fade away the tooltip after 4000 miliseconds
     hideTooltipLater() {
       setTimeout(() => {
-        this.showTooltip = false;
-      }, 4000);
+        this.showTooltipSourceText = false;
+        this.showTooltipTranslatedText = false;
+      }, 1000);
     },
     // translate() method makes translate the input's value if keyboard key "Enter" is pressed
     translate(e) {
@@ -295,14 +312,31 @@ h1 {
 
 /* textarea container styles */
 .textarea-container {
-  padding-right: 45px;
+  padding-right: 50px !important;
 }
 
-/* Styling when btn for copying translation is disabled */
+/* Styling when btn for copying text buttons */
+.textarea-buttons {
+  border: none;
+  position: relative;
+  bottom: 45px;
+  float: right;
+  margin-right: 19px;
+}
+
 .disable-btn:disabled {
   cursor: not-allowed;
-  background-color: #808080 !important;
-  color: #ffffff !important;
+}
+/* Overrides vue-bootstrap class on buttons */
+.btn-secondary {
+  color: #000 !important; 
+  background-color: #fff !important; 
   border: none !important;
 }
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border:1 px solid transparent !important;
+}
+
 </style>
