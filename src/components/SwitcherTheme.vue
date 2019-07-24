@@ -21,14 +21,14 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
-      default: "Select Language Pair To Translate",
+      required: false,
+      default: "Select Language Pair To Translate"
     }
   },
   data() {
     return {
       checked: true
-    }
+    };
   },
   methods: {
     // Toggle class in app id to create dark/light theme
@@ -44,9 +44,10 @@ export default {
 <style lang="scss">
 .switcher {
   &__title {
-    margin-bottom: 20px;
+    margin: 20px 0;
   }
   &__checkbox {
+    display: inline-block;
     label {
       &:hover {
         cursor: pointer;
@@ -56,29 +57,17 @@ export default {
 }
 
 /* Dark & Light mode styling */
-.dark-mode {
-  background-color: #111;
-  color: #fff;
-}
-
 .light-mode {
   background-color: #ffff;
-  color: #111;
+    h1 {
+    color: #000;
+  }
 }
 
-.dark-mode span {
-  color: #fff;
-}
-
-.dark-mode h1 {
-  color: #fff;
-}
-
-.dark-mode p {
-  color: #fff;
-}
-
-.light-mode h1 {
-  color: #000;
+.dark-mode {
+  background-color: #111;
+  h1, p, span {
+    color: #fff;
+  }
 }
 </style>

@@ -6,13 +6,14 @@
         variant="success"
         style="width: 6rem; height: 6rem;"
         label="Text Centered Large Spinner"
-        type="grow">
+        type="grow"
+      >
       </b-spinner>
     </div>
 
     <div v-else>
+      <!-- Vue Logo -->
       <img class="mt-2" alt="Vue logo" src="../assets/logo.png" />
-      <h1 class="my-4 h1">{{ msg }}</h1>
 
       <!-- Theme Color Switcher Component -->
       <SwitcherTheme />
@@ -78,24 +79,25 @@
 
           <!-- Button to copy source text -->
           <b-button
-          id="copyBtn"
-          class="disable-btn textarea-buttons source-text-btn p-2 bg-white"
-          :disabled="!this.inputValue"
-          :data-clipboard-text="this.inputValue"
-          @click="showTooltipSourceText = true"> 
+            id="copyBtn"
+            class="disable-btn textarea-buttons source-text-btn p-2 bg-white"
+            :disabled="!this.inputValue"
+            :data-clipboard-text="this.inputValue"
+            @click="showTooltipSourceText = true"
+          >
             <i class="fas fa-copy"></i>
-        </b-button>
+          </b-button>
 
-        <!-- Tooltip will show only when source text is available & button clicked -->
-        <b-tooltip
-          triggers="click"
-          :show.sync="showTooltipSourceText"
-          @shown="hideTooltipLater"
-          target="copyBtn"
-          placement="left">
-          <strong>Text Copied</strong>
-        </b-tooltip>
-
+          <!-- Tooltip will show only when source text is available & button clicked -->
+          <b-tooltip
+            triggers="click"
+            :show.sync="showTooltipSourceText"
+            @shown="hideTooltipLater"
+            target="copyBtn"
+            placement="left"
+          >
+            <strong>Text Copied</strong>
+          </b-tooltip>
         </b-col>
 
         <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
@@ -108,7 +110,7 @@
             :value="wordTranslated"
           >
           </b-form-textarea>
-          
+
           <!-- If no translation it shows this message -->
           <b-form-textarea
             class="w-100"
@@ -133,7 +135,8 @@
             :show.sync="showTooltipTranslatedText"
             @shown="hideTooltipLater"
             target="copyBtn2"
-            placement="left">
+            placement="left"
+          >
             <strong>Text Copied</strong>
           </b-tooltip>
 
@@ -142,9 +145,8 @@
             class="disable-btn p-2 border-0 textarea-buttons"
             @click="responseSpeak"
             :disabled="!this.wordTranslated"
-            ><i class="fas fa-microphone"></i></b-button
-          >
-
+            ><i class="fas fa-microphone"></i
+          ></b-button>
         </b-col>
       </b-row>
     </div>
@@ -253,7 +255,7 @@ export default {
       // Language output translation
       this.languageTo = index.value;
     },
-    clearTextValue(){
+    clearTextValue() {
       // Resets input field
       this.inputValue = "";
       // Resets translation field
@@ -264,7 +266,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang='scss'>
+
 /* Preloader Spinner Vertical Positioning */
 .spinner-container {
   margin-top: 30%;
@@ -274,10 +277,6 @@ export default {
   .spinner-container {
     margin-top: 50%;
   }
-}
-
-h1 {
-  color: #000;
 }
 
 .vuejs-link,
@@ -331,14 +330,13 @@ h1 {
 }
 /* Overrides vue-bootstrap class on buttons */
 .btn-secondary {
-  color: #000 !important; 
-  background-color: #fff !important; 
+  color: #000 !important;
+  background-color: #fff !important;
   border: none !important;
 }
 .btn:focus {
   outline: none !important;
   box-shadow: none !important;
-  border:1 px solid transparent !important;
+  border: 1 px solid transparent !important;
 }
-
 </style>
