@@ -1,15 +1,7 @@
 <template>
   <b-container class="bv-example-row">
-    <!-- Preloader Spinner Animation while loading = true -->
-    <div class="spinner-container" v-if="loading">
-      <b-spinner
-        variant="success"
-        style="width: 6rem; height: 6rem;"
-        label="Text Centered Large Spinner"
-        type="grow"
-      >
-      </b-spinner>
-    </div>
+    <!-- Preloader Spinner Animation while :loading = true -->
+    <SpinnerAnimation v-if="loading" />
 
     <div v-else>
       <!-- Vue Logo -->
@@ -156,6 +148,8 @@
 <script>
 // Imports axios to the component
 import axios from "axios";
+// Imports SpinnerAnimation component
+import SpinnerAnimation from "./SpinnerAnimation";
 // Imports language selector component
 import LanguageSelector from "./LanguageSelector";
 // Imports ButtonClear component
@@ -169,6 +163,7 @@ export default {
   name: "Translator",
   // Imported components
   components: {
+    SpinnerAnimation,
     LanguageSelector,
     SwitcherTheme,
     ButtonClear
@@ -267,17 +262,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss'>
-
-/* Preloader Spinner Vertical Positioning */
-.spinner-container {
-  margin-top: 30%;
-}
-
-@media only screen and (max-width: 750px) {
-  .spinner-container {
-    margin-top: 50%;
-  }
-}
 
 .vuejs-link,
 .yandex-link,
