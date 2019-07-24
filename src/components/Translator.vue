@@ -13,8 +13,10 @@
     <div v-else>
       <img class="mt-2" alt="Vue logo" src="../assets/logo.png" />
       <h1 class="my-4 h1">{{ msg }}</h1>
+
       <!-- Theme Color Switcher Component -->
-      <theme-switcher></theme-switcher>
+      <SwitcherTheme />
+
       <!-- Language Selector Dropdown -->
       <language-selector
         @onLangFromSelect="updatePairFrom"
@@ -71,7 +73,7 @@
 
           <!-- Clear Text Button Component-->
           <div v-show="this.inputValue">
-            <ClearTextBtn @clearText="clearTextValue" />
+            <ButtonClear @clearText="clearTextValue" />
           </div>
 
           <!-- Button to copy source text -->
@@ -150,22 +152,27 @@
 </template>
 
 <script>
-// Import axios to the component
+// Imports axios to the component
 import axios from "axios";
-// Import language selector component
+// Imports language selector component
 import LanguageSelector from "./LanguageSelector";
-// Import clear text btn component
-import ClearTextBtn from "./ClearTextBtn";
-// Import theme switcher component
-import ThemeSwitcher from "./ThemeSwitcher";
-// Import clipboard.js
+// Imports ButtonClear component
+import ButtonClear from "./ButtonClear";
+// Imports theme switcher component
+import SwitcherTheme from "./SwitcherTheme";
+// Imports clipboard.js
 import ClipboardJS from "clipboard";
 
 export default {
   name: "Translator",
+  // Imported components
+  components: {
+    LanguageSelector,
+    SwitcherTheme,
+    ButtonClear
+  },
   data() {
     return {
-      msg: "Select Language Pair To Translate",
       placeholder: "Type something ...",
       wordTranslated: "",
       inputValue: "",
@@ -252,11 +259,6 @@ export default {
       // Resets translation field
       this.wordTranslated = "";
     }
-  },
-  components: {
-    LanguageSelector,
-    ThemeSwitcher,
-    ClearTextBtn
   }
 };
 </script>

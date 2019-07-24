@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <!-- Theme Dark/Light Switcher -->
+  <div class="switcher">
+    <h1 class="switcher__title">{{ title }}</h1>
+    <!-- Switcher Dark/Light Theme -->
     <b-form-checkbox
-      class="theme-switcher"
-      v-model="checked"
-      name="check-button"
+      class="switcher__checkbox"
+      name="switcher"
       @change="changeThemeColor"
       switch
+      v-model="checked"
     >
       <p v-if="checked">Dark-Theme</p>
       <p v-else>Light-Theme</p>
@@ -16,11 +17,18 @@
 
 <script>
 export default {
-  name: "ThemeSwitcher",
+  name: "SwitcherTheme",
+  props: {
+    title: {
+      type: String,
+      required: true,
+      default: "Select Language Pair To Translate",
+    }
+  },
   data() {
     return {
       checked: true
-    };
+    }
   },
   methods: {
     // Toggle class in app id to create dark/light theme
@@ -33,10 +41,20 @@ export default {
 };
 </script>
 
-<style>
-.theme-switcher label:hover {
-  cursor: pointer;
+<style lang="scss">
+.switcher {
+  &__title {
+    margin-bottom: 20px;
+  }
+  &__checkbox {
+    label {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
+
 /* Dark & Light mode styling */
 .dark-mode {
   background-color: #111;
