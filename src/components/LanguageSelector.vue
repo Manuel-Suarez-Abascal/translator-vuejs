@@ -83,7 +83,7 @@ export default {
       this.optionFrom = [this.optionTo, (this.optionTo = this.optionFrom)][0];
       // Remove rotated class name
       this.rotated = !this.rotated;
-    },
+    }
   }
 };
 </script>

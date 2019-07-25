@@ -1,59 +1,23 @@
 <template>
   <b-container class="bv-example-row">
-    <!-- Preloader Spinner Animation while loading = true -->
-    <div class="spinner-container" v-if="loading">
-      <b-spinner
-        variant="success"
-        style="width: 6rem; height: 6rem;"
-        label="Text Centered Large Spinner"
-        type="grow">
-      </b-spinner>
-    </div>
+    <!-- SpinnerAnimation component - while :loading = true -->
+    <SpinnerAnimation v-if="loading" />
 
     <div v-else>
+      <!-- Vue Logo -->
       <img class="mt-2" alt="Vue logo" src="../assets/logo.png" />
-      <h1 class="my-4 h1">{{ msg }}</h1>
-      <!-- Theme Color Switcher Component -->
-      <theme-switcher></theme-switcher>
+
+      <!-- SwitcherTheme Component -->
+      <SwitcherTheme />
+
       <!-- Language Selector Dropdown -->
       <language-selector
         @onLangFromSelect="updatePairFrom"
         @onLangToSelect="updatePairTo"
       ></language-selector>
 
-      <p class="text-secondary">
-        A translation app powered by
-        <a
-          class="vuejs-link text-decoration-none"
-          href="https://vuejs.org/"
-          target="_blank"
-          rel="noopener"
-        >
-          Vuejs</a
-        >,
-        <a
-          class="yandex-link text-decoration-none"
-          href="https://tech.yandex.com/translate/"
-          target="_blank"
-          rel="noopener"
-          >Yandex API</a
-        >
-        &
-        <a
-          class="responsive-voice-link text-decoration-none"
-          href="https://responsivevoice.org/"
-          target="_blank"
-          rel="noopener"
-          >ResponsiveVoice.js API</a
-        >. Made with &#10084;&#65039; by
-        <a
-          class="github-profile-link color-info text-decoration-none"
-          href="https://github.com/Manuel-Suarez-Abascal"
-          target="_blank"
-          rel="noopener"
-          >Manuel Abascal.</a
-        >
-      </p>
+      <!-- AppMetaData component -->
+      <AppMetaData />
 
       <b-row>
         <b-col class=" mb-3" lg="6" md="6" sm="12">
@@ -71,29 +35,30 @@
 
           <!-- Clear Text Button Component-->
           <div v-show="this.inputValue">
-            <ClearTextBtn @clearText="clearTextValue" />
+            <ButtonClear @clearText="clearTextValue" />
           </div>
 
           <!-- Button to copy source text -->
           <b-button
-          id="copyBtn"
-          class="disable-btn textarea-buttons source-text-btn p-2 bg-white"
-          :disabled="!this.inputValue"
-          :data-clipboard-text="this.inputValue"
-          @click="showTooltipSourceText = true"> 
+            id="copyBtn"
+            class="disable-btn textarea-buttons source-text-btn p-2 bg-white"
+            :disabled="!this.inputValue"
+            :data-clipboard-text="this.inputValue"
+            @click="showTooltipSourceText = true"
+          >
             <i class="fas fa-copy"></i>
-        </b-button>
+          </b-button>
 
-        <!-- Tooltip will show only when source text is available & button clicked -->
-        <b-tooltip
-          triggers="click"
-          :show.sync="showTooltipSourceText"
-          @shown="hideTooltipLater"
-          target="copyBtn"
-          placement="left">
-          <strong>Text Copied</strong>
-        </b-tooltip>
-
+          <!-- Tooltip will show only when source text is available & button clicked -->
+          <b-tooltip
+            triggers="click"
+            :show.sync="showTooltipSourceText"
+            @shown="hideTooltipLater"
+            target="copyBtn"
+            placement="left"
+          >
+            <strong>Text Copied</strong>
+          </b-tooltip>
         </b-col>
 
         <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
@@ -106,7 +71,7 @@
             :value="wordTranslated"
           >
           </b-form-textarea>
-          
+
           <!-- If no translation it shows this message -->
           <b-form-textarea
             class="w-100"
@@ -131,7 +96,8 @@
             :show.sync="showTooltipTranslatedText"
             @shown="hideTooltipLater"
             target="copyBtn2"
-            placement="left">
+            placement="left"
+          >
             <strong>Text Copied</strong>
           </b-tooltip>
 
@@ -140,9 +106,8 @@
             class="disable-btn p-2 border-0 textarea-buttons"
             @click="responseSpeak"
             :disabled="!this.wordTranslated"
-            ><i class="fas fa-microphone"></i></b-button
-          >
-
+            ><i class="fas fa-microphone"></i
+          ></b-button>
         </b-col>
       </b-row>
     </div>
@@ -150,22 +115,26 @@
 </template>
 
 <script>
-// Import axios to the component
 import axios from "axios";
-// Import language selector component
+import SpinnerAnimation from "./SpinnerAnimation";
 import LanguageSelector from "./LanguageSelector";
-// Import clear text btn component
-import ClearTextBtn from "./ClearTextBtn";
-// Import theme switcher component
-import ThemeSwitcher from "./ThemeSwitcher";
-// Import clipboard.js
+import AppMetaData from "./AppMetaData";
+import ButtonClear from "./ButtonClear";
+import SwitcherTheme from "./SwitcherTheme";
 import ClipboardJS from "clipboard";
 
 export default {
   name: "Translator",
+  // Imported components
+  components: {
+    SpinnerAnimation,
+    LanguageSelector,
+    AppMetaData,
+    SwitcherTheme,
+    ButtonClear
+  },
   data() {
     return {
-      msg: "Select Language Pair To Translate",
       placeholder: "Type something ...",
       wordTranslated: "",
       inputValue: "",
@@ -246,69 +215,19 @@ export default {
       // Language output translation
       this.languageTo = index.value;
     },
-    clearTextValue(){
+    clearTextValue() {
       // Resets input field
       this.inputValue = "";
       // Resets translation field
       this.wordTranslated = "";
     }
-  },
-  components: {
-    LanguageSelector,
-    ThemeSwitcher,
-    ClearTextBtn
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-/* Preloader Spinner Vertical Positioning */
-.spinner-container {
-  margin-top: 30%;
-}
-
-@media only screen and (max-width: 750px) {
-  .spinner-container {
-    margin-top: 50%;
-  }
-}
-
-h1 {
-  color: #000;
-}
-
-.vuejs-link,
-.yandex-link,
-.responsive-voice-link,
-.github-profile-link {
-  font-weight: bold;
-}
-
-/* Links styling */
-.vuejs-link {
-  color: #4fc08d;
-}
-
-.vuejs-link:hover {
-  color: #0d9155;
-}
-
-.yandex-link {
-  color: #e61400;
-}
-
-.yandex-link:hover {
-  color: #9e1104;
-}
-
-.responsive-voice-link {
-  color: #f37548;
-}
-
-.responsive-voice-link:hover {
-  color: #f74809;
-}
+<style lang="scss">
+// Import dark/light theme styling
+@import "@/styles/scss/_light-dark-theme.scss";
 
 /* textarea container styles */
 .textarea-container {
@@ -329,14 +248,13 @@ h1 {
 }
 /* Overrides vue-bootstrap class on buttons */
 .btn-secondary {
-  color: #000 !important; 
-  background-color: #fff !important; 
+  color: #000 !important;
+  background-color: #fff !important;
   border: none !important;
 }
 .btn:focus {
   outline: none !important;
   box-shadow: none !important;
-  border:1 px solid transparent !important;
+  border: 1 px solid transparent !important;
 }
-
 </style>
