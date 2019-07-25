@@ -1,13 +1,13 @@
 <template>
   <b-container class="bv-example-row">
-    <!-- Preloader Spinner Animation while :loading = true -->
+    <!-- SpinnerAnimation component - while :loading = true -->
     <SpinnerAnimation v-if="loading" />
 
     <div v-else>
       <!-- Vue Logo -->
       <img class="mt-2" alt="Vue logo" src="../assets/logo.png" />
 
-      <!-- Theme Color Switcher Component -->
+      <!-- SwitcherTheme Component -->
       <SwitcherTheme />
 
       <!-- Language Selector Dropdown -->
@@ -16,39 +16,8 @@
         @onLangToSelect="updatePairTo"
       ></language-selector>
 
-      <p class="text-secondary">
-        A translation app powered by
-        <a
-          class="vuejs-link text-decoration-none"
-          href="https://vuejs.org/"
-          target="_blank"
-          rel="noopener"
-        >
-          Vuejs</a
-        >,
-        <a
-          class="yandex-link text-decoration-none"
-          href="https://tech.yandex.com/translate/"
-          target="_blank"
-          rel="noopener"
-          >Yandex API</a
-        >
-        &
-        <a
-          class="responsive-voice-link text-decoration-none"
-          href="https://responsivevoice.org/"
-          target="_blank"
-          rel="noopener"
-          >ResponsiveVoice.js API</a
-        >. Made with &#10084;&#65039; by
-        <a
-          class="github-profile-link color-info text-decoration-none"
-          href="https://github.com/Manuel-Suarez-Abascal"
-          target="_blank"
-          rel="noopener"
-          >Manuel Abascal.</a
-        >
-      </p>
+      <!-- AppMetaData component -->
+      <AppMetaData />
 
       <b-row>
         <b-col class=" mb-3" lg="6" md="6" sm="12">
@@ -146,17 +115,12 @@
 </template>
 
 <script>
-// Imports axios to the component
 import axios from "axios";
-// Imports SpinnerAnimation component
 import SpinnerAnimation from "./SpinnerAnimation";
-// Imports language selector component
 import LanguageSelector from "./LanguageSelector";
-// Imports ButtonClear component
+import AppMetaData from "./AppMetaData";
 import ButtonClear from "./ButtonClear";
-// Imports theme switcher component
 import SwitcherTheme from "./SwitcherTheme";
-// Imports clipboard.js
 import ClipboardJS from "clipboard";
 
 export default {
@@ -165,6 +129,7 @@ export default {
   components: {
     SpinnerAnimation,
     LanguageSelector,
+    AppMetaData,
     SwitcherTheme,
     ButtonClear
   },
@@ -260,40 +225,9 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang='scss'>
-
-.vuejs-link,
-.yandex-link,
-.responsive-voice-link,
-.github-profile-link {
-  font-weight: bold;
-}
-
-/* Links styling */
-.vuejs-link {
-  color: #4fc08d;
-}
-
-.vuejs-link:hover {
-  color: #0d9155;
-}
-
-.yandex-link {
-  color: #e61400;
-}
-
-.yandex-link:hover {
-  color: #9e1104;
-}
-
-.responsive-voice-link {
-  color: #f37548;
-}
-
-.responsive-voice-link:hover {
-  color: #f74809;
-}
+<style lang="scss">
+// Import dark/light theme styling
+@import "@/styles/scss/_light-dark-theme.scss";
 
 /* textarea container styles */
 .textarea-container {

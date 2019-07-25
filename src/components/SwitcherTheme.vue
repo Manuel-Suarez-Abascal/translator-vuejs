@@ -55,19 +55,4 @@ export default {
     }
   }
 }
-
-/* Dark & Light mode styling */
-.light-mode {
-  background-color: #ffff;
-    h1 {
-    color: #000;
-  }
-}
-
-.dark-mode {
-  background-color: #111;
-  h1, p, span {
-    color: #fff;
-  }
-}
 </style>
