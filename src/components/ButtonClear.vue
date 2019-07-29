@@ -1,6 +1,9 @@
 <template>
   <div class="button">
-    <button class="button__clear" @click="clearValue"></button>
+    <button 
+      class="button__clear" 
+      @click="clearValue">
+    </button>
   </div>
 </template>
 
