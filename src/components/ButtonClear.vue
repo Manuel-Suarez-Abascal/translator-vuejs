@@ -44,7 +44,7 @@ export default {
       padding: 2px;
       border-radius: 50%;
       text-align: center;
-      color: white;
+      color: #fff;
       font-weight: normal;
       font-size: 12px;
       box-shadow: 0 0 2px #e50f0f;

@@ -1,5 +1,5 @@
 <template>
-  <div id="language-selector">
+  <div class="language">
     <b-row class="justify-content-center">
       <span class="mr-2 my-4">
         <strong>From:</strong>
@@ -7,7 +7,7 @@
       <b-col class="my-3 p-0" col lg="3" md="3" sm="10" cols="9">
         <!-- When input changes it calls related method to emit selected data. -->
         <b-form-select
-          class="language-selectors"
+          class="language__selectors"
           v-model="optionFrom"
           @input="onOptionFromSelect"
           aria-label="Language to translate"
@@ -28,7 +28,7 @@
           @click="interchangeLanguages"
           :class="{ rotated: rotated }"
           :disabled="this.optionTo === null || this.optionFrom === null"
-          class="fa fa-exchange mt-3 ml-4 interchange-lang-btn btn disable-btn"
+          class="fa fa-exchange ml-4 language__interchange btn disable-btn"
           aria-hidden="true"
         ></button>
       </b-col>
@@ -39,7 +39,7 @@
       <b-col class="my-3 p-0" col lg="3" md="3" sm="10" cols="9">
         <!-- When input changes it calls related method to emit selected data. -->
         <b-form-select
-          class="language-selectors"
+          class="language__selectors"
           v-model="optionTo"
           @input="onOptionToSelect"
           aria-label="Output text translated"
@@ -87,31 +87,33 @@ export default {
   }
 };
 </script>
-<style scoped>
-.language-selectors:hover {
-  cursor: pointer;
-}
-.interchange-lang-btn {
-  background-color: rgb(204, 201, 201);
-  border-radius: 50px;
-  border: none;
-  color: #000;
-  cursor: pointer;
-  padding: 10px 15px;
-}
-
-.interchange-lang-btn:hover {
-  background-color: rgb(128, 125, 125);
-  transition: 0.4s background-color, 0.1s transform;
-}
-
-.interchange-lang-btn.rotated {
-  transform: rotate(180deg);
-}
-
-@media only screen and (max-width: 765px) {
-  .interchange-lang-btn {
-    margin-top: 0 !important;
+<style lang="scss" scoped>
+.language {
+  &__selectors {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__interchange {
+    background-color: rgb(204, 201, 201);
+    border-radius: 50px;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin-top: 16px;
+    &:hover {
+      background-color: rgb(128, 125, 125);
+      transition: 0.4s background-color, 0.1s transform;
+    }
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
+  @media only screen and (max-width: 765px) {
+    &__interchange {
+      margin-top: 0;
+    }
   }
 }
 </style>
