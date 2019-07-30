@@ -88,7 +88,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 .language {
   &__selectors {
     &:hover {
@@ -107,19 +106,14 @@ export default {
       background-color: rgb(128, 125, 125);
       transition: 0.4s background-color, 0.1s transform;
     }
-     &.rotated {
+    &.rotated {
       transform: rotate(180deg);
     }
   }
- 
   @media only screen and (max-width: 765px) {
     &__interchange {
       margin-top: 0;
     }
   }
 }
-
-
-
-
 </style>
