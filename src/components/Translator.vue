@@ -163,14 +163,11 @@ export default {
     }
   },
   methods: {
-    // Method to get audio text to speech of translated text
-    responseSpeak() {
-      // set default audio voice to match languageTitle property
-      responsiveVoice.setDefaultVoice(this.languageTitle.replace(/\s+/g, " ").trim());
-
-      // translates to audio wordTranslated value
-      responsiveVoice.speak(
-        this.wordTranslated,
+      // Method to get audio text to speech of translated text
+      responseSpeak() {
+        responsiveVoice.speak(
+          this.wordTranslated,
+          this.languageTitle.replace(/\s+/g, " ").trim()
       );
     },
     // function to make preloader spinner for 1500 miliseconds
