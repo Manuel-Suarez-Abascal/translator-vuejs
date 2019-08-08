@@ -165,6 +165,14 @@ export default {
   methods: {
     // Method to get audio text to speech of translated text
     responseSpeak() {
+      // store audio voices into an voiceList object
+      var voiceList = responsiveVoice.getVoices();
+
+      // loops through voiceList object
+      Object.keys(voiceList).forEach(function(voices) {
+        // Store available voices key/value pairs
+        var voicesValue = voiceList[voices];
+      });
       responsiveVoice.speak(
         this.wordTranslated,
         this.languageTitle.replace(/\s+/g, " ").trim()
