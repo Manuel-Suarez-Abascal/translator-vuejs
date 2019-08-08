@@ -23,7 +23,7 @@
         <b-col class=" mb-3" lg="6" md="6" sm="12">
           <!-- Input field to get a value to translate -->
           <b-form-textarea
-            class="w-100 textarea-container"
+            class="w-100 textarea"
             type="text"
             rows="9"
             v-model="inputValue"
@@ -41,7 +41,7 @@
           <!-- Button to copy source text -->
           <b-button
             id="copyBtn"
-            class="disable-btn textarea-buttons source-text-btn p-2 bg-white"
+            class="textarea__buttons textarea__buttons__disabled  source-text-btn p-2 bg-white"
             :disabled="!this.inputValue"
             :data-clipboard-text="this.inputValue"
             @click="showTooltipSourceText = true"
@@ -83,7 +83,7 @@
           <!-- Button to copy translated content using clipboard.js -->
           <b-button
             id="copyBtn2"
-            class="disable-btn textarea-buttons translation-text-btn p-2 bg-white"
+            class="textarea__buttons textarea__buttons__disabled  p-2 bg-white"
             :disabled="!this.wordTranslated"
             :data-clipboard-text="this.wordTranslated"
             @click="showTooltipTranslatedText = true"
@@ -103,7 +103,7 @@
 
           <!-- Text to Speech Audio button -->
           <b-button
-            class="disable-btn p-2 border-0 textarea-buttons"
+            class="textarea__buttons textarea__buttons__disabled p-2 border-0 "
             @click="responseSpeak"
             :disabled="!this.wordTranslated"
             ><i class="fas fa-microphone"></i
@@ -163,11 +163,11 @@ export default {
     }
   },
   methods: {
-    // Method to get audio text to speech of translated text
-    responseSpeak() {
-      responsiveVoice.speak(
-        this.wordTranslated,
-        this.languageTitle.replace(/\s+/g, " ").trim()
+      // Method to get audio text to speech of translated text
+      responseSpeak() {
+        responsiveVoice.speak(
+          this.wordTranslated,
+          this.languageTitle.replace(/\s+/g, " ").trim()
       );
     },
     // function to make preloader spinner for 1500 miliseconds
@@ -226,35 +226,8 @@ export default {
 </script>
 
 <style lang="scss">
-// Import dark/light theme styling
+// Import file dark/light theme styling
 @import "@/styles/scss/_light-dark-theme.scss";
-
-/* textarea container styles */
-.textarea-container {
-  padding-right: 50px !important;
-}
-
-/* Styling when btn for copying text buttons */
-.textarea-buttons {
-  border: none;
-  position: relative;
-  bottom: 45px;
-  float: right;
-  margin-right: 19px;
-}
-
-.disable-btn:disabled {
-  cursor: not-allowed;
-}
-/* Overrides vue-bootstrap class on buttons */
-.btn-secondary {
-  color: #000 !important;
-  background-color: #fff !important;
-  border: none !important;
-}
-.btn:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border: 1 px solid transparent !important;
-}
+// Import file copy/audio button styling
+@import "@/styles/scss/_copy-audio-buttons.scss";
 </style>
