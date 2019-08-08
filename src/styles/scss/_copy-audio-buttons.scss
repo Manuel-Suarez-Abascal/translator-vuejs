@@ -1,0 +1,25 @@
+/* textarea buttons styling */
+.textarea {
+    padding-right: 50px !important;
+    /* Styling for copying text/audio voice buttons */
+    &__buttons {
+      border: none;
+      position: relative;
+      bottom: 45px;
+      float: right;
+      margin-right: 19px;
+      &__disabled:disabled {
+        cursor: not-allowed;
+      } 
+    } 
+  }/* Overrides vue-bootstrap class on buttons */
+  .btn-secondary {
+    color: #000 !important;
+    background-color: #fff !important;
+    border: none !important;
+  }
+  .btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1 px solid transparent !important;
+  }
