@@ -131,7 +131,7 @@ export default {
     LanguageSelector,
     AppMetaData,
     SwitcherTheme,
-    DeleteButton,
+    DeleteButton
   },
   data() {
     return {
@@ -163,11 +163,11 @@ export default {
     }
   },
   methods: {
-      // Method to get audio text to speech of translated text
-      responseSpeak() {
-        responsiveVoice.speak(
-          this.wordTranslated,
-          this.languageTitle.replace(/\s+/g, " ").trim()
+    // Method to get audio text to speech of translated text
+    responseSpeak() {
+      responsiveVoice.speak(
+        this.wordTranslated,
+        this.languageTitle.replace(/\s+/g, " ").trim()
       );
     },
     // function to make preloader spinner for 1500 miliseconds
