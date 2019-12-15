@@ -1,6 +1,6 @@
 <template>
   <div class="button">
-    <button class="button__clear" @click="clearValue"></button>
+    <button class="button__clear" @click="deleteValue"></button>
   </div>
 </template>
 
@@ -8,8 +8,8 @@
 export default {
   export: "DeleteButton",
   methods: {
-    clearValue() {
-      this.$emit("clearText");
+    deleteValue() {
+      this.$emit("deleteText");
     }
   }
 };

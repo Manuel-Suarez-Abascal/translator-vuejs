@@ -35,7 +35,7 @@
 
           <!-- Clear Text Button Component-->
           <div v-show="this.inputValue">
-            <DeleteButton @clearText="clearTextValue" />
+            <DeleteButton @deleteText="deleteTextValue" />
           </div>
 
           <!-- Button to copy source text -->
@@ -215,7 +215,7 @@ export default {
       // Language output translation
       this.languageTo = index.value;
     },
-    clearTextValue() {
+    deleteTextValue() {
       // Resets input field
       this.inputValue = "";
       // Resets translation field
