@@ -6,12 +6,8 @@
 
 <script>
 export default {
-  export: "ButtonClear",
-  data() {
-    return {};
-  },
+  export: "DeleteButton",
   methods: {
-    // Emits method to clear source/translated texts
     clearValue() {
       this.$emit("clearText");
     }

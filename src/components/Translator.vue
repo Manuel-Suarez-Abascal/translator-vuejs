@@ -35,7 +35,7 @@
 
           <!-- Clear Text Button Component-->
           <div v-show="this.inputValue">
-            <ButtonClear @clearText="clearTextValue" />
+            <DeleteButton @clearText="clearTextValue" />
           </div>
 
           <!-- Button to copy source text -->
@@ -119,7 +119,7 @@ import axios from "axios";
 import SpinnerAnimation from "./SpinnerAnimation";
 import LanguageSelector from "./LanguageSelector";
 import AppMetaData from "./AppMetaData";
-import ButtonClear from "./ButtonClear";
+import DeleteButton from "./DeleteButton";
 import SwitcherTheme from "./SwitcherTheme";
 import ClipboardJS from "clipboard";
 
@@ -131,7 +131,7 @@ export default {
     LanguageSelector,
     AppMetaData,
     SwitcherTheme,
-    ButtonClear
+    DeleteButton,
   },
   data() {
     return {
