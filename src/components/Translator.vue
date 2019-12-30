@@ -1,26 +1,21 @@
 <template>
   <b-container class="bv-example-row">
-    <!-- SpinnerAnimation component - while :loading = true -->
     <SpinnerAnimation v-if="loading" />
 
     <div v-else>
-      <!-- SwitcherTheme Component -->
       <SwitcherTheme />
 
-      <!-- Language Selector Dropdown -->
       <language-selector
         @onLangFromSelect="updatePairFrom"
         @onLangToSelect="updatePairTo"
       ></language-selector>
 
-      <!-- AppMetaData component -->
       <MetaData />
 
       <b-row>
         <b-col class=" mb-3" lg="6" md="6" sm="12">
-          <!-- Input field to get a value to translate -->
           <b-form-textarea
-            class="w-100 textarea"
+            class="textarea w-100"
             type="text"
             rows="9"
             v-model="inputValue"
@@ -30,15 +25,13 @@
           >
           </b-form-textarea>
 
-          <!-- Clear Text Button Component-->
           <div v-show="this.inputValue">
             <DeleteButton @deleteText="deleteTextValue" />
           </div>
 
-          <!-- Button to copy source text -->
           <b-button
             id="copyBtn"
-            class="textarea__buttons textarea__buttons__disabled  source-text-btn p-2 bg-white"
+            class="textarea__buttons textarea__buttons__disabled source-text-btn bg-white p-2"
             :disabled="!this.inputValue"
             :data-clipboard-text="this.inputValue"
             @click="showTooltipSourceText = true"
@@ -46,7 +39,6 @@
             <i class="fas fa-copy"></i>
           </b-button>
 
-          <!-- Tooltip will show only when source text is available & button clicked -->
           <b-tooltip
             triggers="click"
             :show.sync="showTooltipSourceText"
@@ -59,7 +51,6 @@
         </b-col>
 
         <b-col class="translated-container mb-3" lg="6" md="6" sm="12">
-          <!-- Outputs the translation results -->
           <b-form-textarea
             id="translation-result"
             class="w-100 textarea-container"
@@ -69,7 +60,6 @@
           >
           </b-form-textarea>
 
-          <!-- If no translation it shows this message -->
           <b-form-textarea
             class="w-100"
             rows="9"
@@ -77,17 +67,16 @@
             aria-label="Text already translated"
             v-else
           ></b-form-textarea>
-          <!-- Button to copy translated content using clipboard.js -->
+
           <b-button
             id="copyBtn2"
-            class="textarea__buttons textarea__buttons__disabled  p-2 bg-white"
+            class="textarea__buttons textarea__buttons__disabled p-2 bg-white"
             :disabled="!this.wordTranslated"
             :data-clipboard-text="this.wordTranslated"
             @click="showTooltipTranslatedText = true"
             ><i class="fas fa-copy"></i>
           </b-button>
 
-          <!-- Tooltip will show only when translated text is available & button clicked -->
           <b-tooltip
             triggers="click"
             :show.sync="showTooltipTranslatedText"
@@ -98,9 +87,8 @@
             <strong>Text Copied</strong>
           </b-tooltip>
 
-          <!-- Text to Speech Audio button -->
           <b-button
-            class="textarea__buttons textarea__buttons__disabled p-2 border-0 "
+            class="textarea__buttons textarea__buttons__disabled border-0 p-2"
             @click="responseSpeak"
             :disabled="!this.wordTranslated"
             ><i class="fas fa-microphone"></i
@@ -113,78 +101,64 @@
 
 <script>
 import axios from "axios";
-import SpinnerAnimation from "./SpinnerAnimation";
+import ClipboardJS from "clipboard";
+import DeleteButton from "./DeleteButton";
 import LanguageSelector from "./LanguageSelector";
 import MetaData from "./MetaData";
-import DeleteButton from "./DeleteButton";
+import SpinnerAnimation from "./SpinnerAnimation";
 import SwitcherTheme from "./SwitcherTheme";
-import ClipboardJS from "clipboard";
 
 export default {
   name: "Translator",
-  // Imported components
   components: {
-    SpinnerAnimation,
+    DeleteButton,
     LanguageSelector,
     MetaData,
-    SwitcherTheme,
-    DeleteButton
+    SpinnerAnimation,
+    SwitcherTheme
   },
   data() {
     return {
       placeholder: "Type something ...",
       wordTranslated: "",
       inputValue: "",
-      // from and to values are changed when LanguageSelector emits language codes.
       languageFrom: null,
       languageTo: null,
-      // language voice value
       languageTitle: null,
-      // Loading = true to show Preloader Spinner Animation
       loading: true,
-      // Tooltip
       showTooltipSourceText: false,
       showTooltipTranslatedText: false
     };
   },
   mounted() {
-    //Calls button to copy translation with clipboard.js
     new ClipboardJS(".btn");
-    //Call preloader spinner function
     this.preloaderSpinner();
   },
-  // Listens for change in language title
   computed: {
     languageTitleChange: function() {
       return this.languageTitle;
     }
   },
   methods: {
-    // Method to get audio text to speech of translated text
     responseSpeak() {
       responsiveVoice.speak(
         this.wordTranslated,
         this.languageTitle.replace(/\s+/g, " ").trim()
       );
     },
-    // function to make preloader spinner for 1500 miliseconds
     preloaderSpinner() {
       setTimeout(() => {
         this.loading = false;
       }, 1500);
     },
-    // function to fade away the tooltip after 4000 miliseconds
     hideTooltipLater() {
       setTimeout(() => {
         this.showTooltipSourceText = false;
         this.showTooltipTranslatedText = false;
       }, 1000);
     },
-    // translate() method makes translate the input's value if keyboard key "Enter" is pressed
     translate(e) {
-      // Checks if enter key has been pressed & calls Axios on true
       if (e.key == "Enter") {
-        // Axios get() request using Yandex API
         axios
           .get(
             `https://translate.yandex.net/api/v1.5/tr.json/translate?lang=${
@@ -196,26 +170,19 @@ export default {
             }&format=plain`
           )
           .then(response => {
-            // Stores input value translation into translated result
             this.wordTranslated = response.data.text[0];
           });
       }
     },
-    // It works when 'from' option is selected.
     updatePairFrom(index) {
       this.languageFrom = index.value;
     },
-    // It works when 'to' option is selected.
     updatePairTo(index) {
-      // Language title for voice audio text to speech
       this.languageTitle = index.text + " Female";
-      // Language output translation
       this.languageTo = index.value;
     },
     deleteTextValue() {
-      // Resets input field
       this.inputValue = "";
-      // Resets translation field
       this.wordTranslated = "";
     }
   }
@@ -223,8 +190,6 @@ export default {
 </script>
 
 <style lang="scss">
-// Import file dark/light theme styling
 @import "@/styles/scss/_light-dark-theme.scss";
-// Import file copy/audio button styling
 @import "@/styles/scss/_copy-audio-buttons.scss";
 </style>
