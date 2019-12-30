@@ -14,7 +14,7 @@
       ></language-selector>
 
       <!-- AppMetaData component -->
-      <AppMetaData />
+      <MetaData />
 
       <b-row>
         <b-col class=" mb-3" lg="6" md="6" sm="12">
@@ -115,7 +115,7 @@
 import axios from "axios";
 import SpinnerAnimation from "./SpinnerAnimation";
 import LanguageSelector from "./LanguageSelector";
-import AppMetaData from "./AppMetaData";
+import MetaData from "./MetaData";
 import DeleteButton from "./DeleteButton";
 import SwitcherTheme from "./SwitcherTheme";
 import ClipboardJS from "clipboard";
@@ -126,7 +126,7 @@ export default {
   components: {
     SpinnerAnimation,
     LanguageSelector,
-    AppMetaData,
+    MetaData,
     SwitcherTheme,
     DeleteButton
   },
