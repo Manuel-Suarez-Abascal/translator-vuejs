@@ -4,9 +4,6 @@
     <SpinnerAnimation v-if="loading" />
 
     <div v-else>
-      <!-- Vue Logo -->
-      <img class="mt-2" alt="Vue logo" src="../assets/logo.png" />
-
       <!-- SwitcherTheme Component -->
       <SwitcherTheme />
 
