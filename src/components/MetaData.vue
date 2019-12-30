@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: "AppMetaData"
+  name: "MetaData"
 };
 </script>
 

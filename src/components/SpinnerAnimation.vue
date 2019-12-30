@@ -3,8 +3,7 @@
     <b-spinner
       class="spinner__animation"
       variant="success"
-      style="width: 6rem; height: 6rem;"
-      label="Text Centered Large Spinner"
+      label="Centered Large Spinner Text"
       type="grow"
     >
     </b-spinner>
@@ -18,9 +17,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* Preloader Spinner Vertical Positioning */
 .spinner {
   margin-top: 30%;
+  &__animation {
+    height: 6rem;
+    width: 6rem;
+  }
   @media only screen and (max-width: 750px) {
     .spinner {
       margin-top: 50%;

@@ -1,7 +1,6 @@
 <template>
   <div class="switcher">
     <h1 class="switcher__title">{{ title }}</h1>
-    <!-- Switcher Dark/Light Theme -->
     <b-form-checkbox
       class="switcher__checkbox"
       name="switcher"
@@ -31,11 +30,11 @@ export default {
     };
   },
   methods: {
-    // Toggle class in app id to create dark/light theme
     changeThemeColor() {
-      var body = document.getElementById("app-wrapper");
-      var currentClass = body.className;
-      body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+      const appWrapper = document.getElementById("app-wrapper");
+      const currentClass = appWrapper.className;
+      appWrapper.className =
+        currentClass == "dark-mode" ? "light-mode" : "dark-mode";
     }
   }
 };
