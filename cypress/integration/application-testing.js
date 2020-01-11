@@ -35,4 +35,32 @@ describe("Testing application works as intended", () => {
       .should("have.value", "")
       .select("French");
   });
+
+  it("App meta description is visible & contain correct links", () => {
+    cy.get("[data-test=META_DATA]").should("be.visible");
+
+    cy.get("[data-test=META_DATA_LINK_VUE]").should(
+      "have.attr",
+      "href",
+      "https://vuejs.org/"
+    );
+
+    cy.get("[data-test=META_DATA_LINK_YANDEX]").should(
+      "have.attr",
+      "href",
+      "https://tech.yandex.com/translate/"
+    );
+
+    cy.get("[data-test=META_DATA_LINK_RESPONSIVEVOICE]").should(
+      "have.attr",
+      "href",
+      "https://responsivevoice.org/"
+    );
+
+    cy.get("[data-test=META_DATA_LINK_GITHUB]").should(
+      "have.attr",
+      "href",
+      "https://github.com/Manuel-Suarez-Abascal"
+    );
+  });
 });
