@@ -23,4 +23,16 @@ describe("Testing application works as intended", () => {
       .click()
       .should("not.have.class", "dark-mode");
   });
+
+  it("Language selectors are visible & can select language options", () => {
+    cy.get("[data-test=LANGUAGE_SELECTOR]").should("be.visible");
+
+    cy.get("#__BVID__9")
+      .should("have.value", "")
+      .select("US English");
+
+    cy.get("#__BVID__10")
+      .should("have.value", "")
+      .select("French");
+  });
 });

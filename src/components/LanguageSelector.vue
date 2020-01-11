@@ -1,5 +1,5 @@
 <template>
-  <div class="language">
+  <div class="language" data-test="LANGUAGE_SELECTOR">
     <b-row class="justify-content-center">
       <span class="mr-2 my-4">
         <strong>From:</strong>
