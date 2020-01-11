@@ -11,4 +11,16 @@ describe("Testing application works as intended", () => {
       .should("be.visible")
       .should("contain.text", "Select Language Pair To Translate");
   });
+
+  it("Light/Dark theme works properly", () => {
+    cy.get("[data-test=THEME_SWITCHER]")
+      .should("be.visible")
+      .click();
+
+    cy.get("[data-test=DOM_BODY]").should("have.class", "dark-mode");
+
+    cy.get("[data-test=THEME_SWITCHER]")
+      .click()
+      .should("not.have.class", "dark-mode");
+  });
 });
