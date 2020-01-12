@@ -38,13 +38,13 @@ npm run build
 
 ### Run your tests with [Cypress.js](https://www.cypress.io/)
 
-- First, make sure that your project is [running locally](#run-the-project-for-local-development).
+- First, make sure that your project is **[running locally](#run-the-project-for-local-development)**.
 
 - Once your local development is running & ready, open a new terminal, go to the project's root folder & run the command:
 ```
 npm run cypress:open
 ```
-if you did everything correctly, you'll get a popup window...make sure to click in `application-testing.js` & cypress will start running the test.
+if you did everything correctly, you'll get a popup window...make sure to click in `application-testing.js` & cypress will start running the tests.
 
 **Notes:** 
 
