@@ -28,7 +28,7 @@ npm run serve
 ```
 It will open a developer environment local server in ```http://localhost:8080/```
 
-### Compile & Minify For Production
+### Compile & Minify For Production ###
 
 - Once it is ready for production, run the command:
 
@@ -36,10 +36,17 @@ It will open a developer environment local server in ```http://localhost:8080/``
 npm run build
 ```
 
-### Run your tests
+### Run your tests with [Cypress.js](https://www.cypress.io/)
+
+- First, make sure that your project is [running locally](#run-the-project-for-local-development).
+
+- Once your local development is running & ready, open a new terminal, go to the project's root folder & run the command:
 ```
-npm run test
+npm run cypress:open
 ```
+if you did everything correctly, you'll get a popup window...make sure to click in `application-testing.js` & cypress will start running the test.
+
+Note: For contributing all test must passed before requesting a new `Pull Request`.
 
 ### Lints and fixes files
 ```
