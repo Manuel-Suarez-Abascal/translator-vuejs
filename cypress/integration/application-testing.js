@@ -1,8 +1,10 @@
 /// <reference types="Cypress" />
+import baseURL from "../../cypress";
 
 describe("App loads correctly, light/dark theme available & language switcher works", () => {
+  const url = baseURL.baseURL;
   it("App loads properly", () => {
-    cy.visit("http://localhost:8080/");
+    cy.visit(url);
     cy.get("[data-test=APPLICATION_WRAPPER]").should("be.visible");
   });
 
