@@ -44,7 +44,7 @@ npm run build
 ```
 npm run cypress:open
 ```
-if you did everything correctly, you'll get a popup window...make sure to click in `application-testing.js` & cypress will start running the tests.
+If everything was done correctly, you'll get a popup window...make sure to click in `application-testing.js` & cypress'll start running the tests.
 
 **Notes:** 
 
