@@ -16,6 +16,7 @@
         <b-col class=" mb-3" lg="6" md="6" sm="12">
           <b-form-textarea
             class="textarea w-100"
+            data-test="SOURCE_TEXT_TRANSLATION_FORM"
             type="text"
             rows="9"
             v-model="inputValue"
@@ -26,12 +27,16 @@
           </b-form-textarea>
 
           <div v-show="this.inputValue">
-            <DeleteButton @deleteText="deleteTextValue" />
+            <DeleteButton
+              data-test="DELETE_TEXT_VALUE_BTN"
+              @deleteText="deleteTextValue"
+            />
           </div>
 
           <b-button
             id="copyBtn"
             class="textarea__buttons textarea__buttons__disabled source-text-btn bg-white p-2"
+            data-test="SOURCE_FORM_COPY_BTN"
             :disabled="!this.inputValue"
             :data-clipboard-text="this.inputValue"
             @click="showTooltipSourceText = true"
@@ -40,6 +45,7 @@
           </b-button>
 
           <b-tooltip
+            data-test="SOURCE_FORM_COPY_BTN_TOOLTIP"
             triggers="click"
             :show.sync="showTooltipSourceText"
             @shown="hideTooltipLater"
@@ -54,6 +60,7 @@
           <b-form-textarea
             id="translation-result"
             class="w-100 textarea-container"
+            data-test="TARGET_TEXT_TRANSLATION_FORM"
             rows="9"
             v-if="wordTranslated"
             :value="wordTranslated"
@@ -71,6 +78,7 @@
           <b-button
             id="copyBtn2"
             class="textarea__buttons textarea__buttons__disabled p-2 bg-white"
+            data-test="TARGET_FORM_COPY_BTN"
             :disabled="!this.wordTranslated"
             :data-clipboard-text="this.wordTranslated"
             @click="showTooltipTranslatedText = true"
@@ -78,6 +86,7 @@
           </b-button>
 
           <b-tooltip
+            data-test="TARGET_FORM_COPY_BTN_TOOLTIP"
             triggers="click"
             :show.sync="showTooltipTranslatedText"
             @shown="hideTooltipLater"
@@ -89,6 +98,7 @@
 
           <b-button
             class="textarea__buttons textarea__buttons__disabled border-0 p-2"
+            data-test="RESPONSESPEAK_BTN"
             @click="responseSpeak"
             :disabled="!this.wordTranslated"
             ><i class="fas fa-microphone"></i
