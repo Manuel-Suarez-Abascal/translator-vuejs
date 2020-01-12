@@ -46,7 +46,9 @@ npm run cypress:open
 ```
 if you did everything correctly, you'll get a popup window...make sure to click in `application-testing.js` & cypress will start running the test.
 
-Note: For contributing all test must passed before requesting a new `Pull Request`.
+**Notes:** 
+
+- For contributing all tests must passed before requesting a new `Pull Request`.
 
 ### Lints and fixes files
 ```
