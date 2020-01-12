@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" data-test="APPLICATION_WRAPPER">
     <Translator />
   </div>
 </template>
