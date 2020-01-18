@@ -36,7 +36,8 @@ It will open a developer environment local server in ```http://localhost:8080/``
 npm run build
 ```
 
-### Run your tests with [Cypress.js](https://www.cypress.io/)
+### Run your tests with [Cypress.js](https://www.cypress.io/) 
+[![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg?style=flat-square)](https://cypress.io)
 
 - First, make sure that your project is **[running locally](#run-the-project-for-local-development)**.
 
