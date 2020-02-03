@@ -1,5 +1,5 @@
 <template>
-  <div class="language" data-test="LANGUAGE_SELECTOR">
+  <div class="language" data-cy="language-selector">
     <b-row class="justify-content-center">
       <span class="mr-2 my-4">
         <strong>From:</strong>
@@ -24,7 +24,7 @@
       <b-col class="p-0" col lg="1" md="2" sm="12" cols="12">
         <button
           @click="interchangeLanguages"
-          data-test="INTERCHANGE_LANGUAGE_BTN"
+          data-cy="interchange-language-btn"
           :class="{ btnRotated: btnRotated }"
           :disabled="this.optionTo === null || this.optionFrom === null"
           class="language__interchange btn disable-btn fa fa-exchange ml-4"

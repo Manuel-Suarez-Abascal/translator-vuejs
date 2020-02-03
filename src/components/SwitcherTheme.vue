@@ -1,9 +1,9 @@
 <template>
   <div class="switcher">
-    <h1 class="switcher__title" data-test="HEADER_TITLE">{{ title }}</h1>
+    <h1 class="switcher__title" data-cy="header-title">{{ title }}</h1>
     <b-form-checkbox
       class="switcher__checkbox"
-      data-test="THEME_SWITCHER"
+      data-cy="theme-switcher"
       name="switcher"
       @change="changeThemeColor"
       switch
