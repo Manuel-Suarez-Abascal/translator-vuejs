@@ -5,120 +5,159 @@ describe("App loads correctly, light/dark theme available & language switcher wo
   const url = baseURL.baseURL;
   it("App loads properly", () => {
     cy.visit(url);
-    cy.get("[data-test=APPLICATION_WRAPPER]").should("be.visible");
+    cy.get("[data-cy=application-wrapper]")
+      .should("exist")
+      .and("be.visible");
   });
 
   it("Header title is visible & contains correct text", () => {
-    cy.get("[data-test=HEADER_TITLE]")
-      .should("be.visible")
-      .should("contain.text", "Select Language Pair To Translate");
+    cy.get("[data-cy=header-title]")
+      .should("exist")
+      .and("be.visible")
+      .and("contain.text", "Select Language Pair To Translate");
   });
 
   it("Light/Dark theme works properly", () => {
-    cy.get("[data-test=THEME_SWITCHER]")
-      .should("be.visible")
+    cy.get("[data-cy=theme-switcher]")
+      .should("exist")
+      .and("be.visible")
       .click();
 
-    cy.get("[data-test=DOM_BODY]").should("have.class", "dark-mode");
+    cy.get("[data-cy=dom-body]").should("have.class", "dark-mode");
 
-    cy.get("[data-test=THEME_SWITCHER]")
+    cy.get("[data-cy=theme-switcher]")
       .click()
       .should("not.have.class", "dark-mode");
   });
 
   it("Language selectors are visible & can select language options", () => {
-    cy.get("[data-test=LANGUAGE_SELECTOR]").should("be.visible");
+    cy.get("[data-cy=language-selector]")
+      .should("exist")
+      .and("be.visible");
 
     cy.get("#__BVID__9")
-      .should("have.value", "")
+      .should("exist")
+      .and("be.visible")
+      .and("have.value", "")
       .select("US English");
 
     cy.get("#__BVID__10")
-      .should("have.value", "")
+      .should("exist")
+      .and("be.visible")
+      .and("have.value", "")
       .select("French");
   });
 
   it("App meta description is visible & contain correct links", () => {
-    cy.get("[data-test=META_DATA]").should("be.visible");
+    cy.get("[data-cy=meta-data]")
+      .should("exist")
+      .and("be.visible");
 
-    cy.get("[data-test=META_DATA_LINK_VUE]").should(
-      "have.attr",
-      "href",
-      "https://vuejs.org/"
-    );
+    cy.get("[data-cy=meta-data-link-vue]")
+      .should("exist")
+      .and("be.visible")
+      .and("have.attr", "href", "https://vuejs.org/");
 
-    cy.get("[data-test=META_DATA_LINK_YANDEX]").should(
-      "have.attr",
-      "href",
-      "https://tech.yandex.com/translate/"
-    );
+    cy.get("[data-cy=meta-data-link-yandex]")
+      .should("exist")
+      .and("be.visible")
+      .and("have.attr", "href", "https://tech.yandex.com/translate/");
 
-    cy.get("[data-test=META_DATA_LINK_RESPONSIVEVOICE]").should(
-      "have.attr",
-      "href",
-      "https://responsivevoice.org/"
-    );
+    cy.get("[data-cy=meta-data-link-responsivevoice]")
+      .should("exist")
+      .and("be.visible")
+      .and("have.attr", "href", "https://responsivevoice.org/");
 
-    cy.get("[data-test=META_DATA_LINK_GITHUB]").should(
-      "have.attr",
-      "href",
-      "https://github.com/Manuel-Suarez-Abascal"
-    );
+    cy.get("[data-cy=meta-data-link-github]")
+      .should("exist")
+      .and("be.visible")
+      .and("have.attr", "href", "https://github.com/Manuel-Suarez-Abascal");
   });
 });
 
 describe("Translation functionality & form buttons works as intended", () => {
   it("Form buttons are disabled when no texts have been typed", () => {
-    cy.get("[data-test=DELETE_TEXT_VALUE_BTN]").should("not.be.visible");
-    cy.get("[data-test=SOURCE_FORM_COPY_BTN]").should("have.attr", "disabled");
-    cy.get("[data-test=TARGET_FORM_COPY_BTN]").should("have.attr", "disabled");
-    cy.get("[data-test=RESPONSESPEAK_BTN]").should("have.attr", "disabled");
+    cy.get("[data-cy=delete-text-value-btn]")
+      .should("not.exist")
+      .and("not.be.visible");
+    cy.get("[data-cy=source-form-copy-btn]")
+      .should("be.visible")
+      .and("have.attr", "disabled");
+    cy.get("[data-cy=target-form-copy-btn]")
+      .should("be.visible")
+      .and("have.attr", "disabled");
+    cy.get("[data-cy=responsespeak-btn]")
+      .should("be.visible")
+      .and("have.attr", "disabled");
   });
 
   it("Can type & translate text", () => {
-    cy.get("[data-test=SOURCE_TEXT_TRANSLATION_FORM]").type(
-      "I'm testing this application using Cypress.js and it's amazing!{enter}"
-    );
-    cy.get("[data-test=TARGET_TEXT_TRANSLATION_FORM]").should(
-      "have.value",
-      "Je suis en essais à l'aide de cette application Cypress.js et c'est incroyable!"
-    );
+    cy.get("[data-cy=source-text-translation-form]")
+      .should("exist")
+      .and("be.visible")
+      .type(
+        "I'm testing this application using Cypress.js and it's amazing!{enter}"
+      );
+
+    cy.get("[data-cy=target-text-translation-form]")
+      .should("exist")
+      .and("be.visible")
+      .and(
+        "have.value",
+        "Je suis en essais à l'aide de cette application Cypress.js et c'est incroyable!"
+      );
   });
 
   it("Form buttons are available after form has text value", () => {
-    cy.get("[data-test=SOURCE_FORM_COPY_BTN]").should(
-      "not.have.attr",
-      "disabled"
-    );
-    cy.get("[data-test=TARGET_FORM_COPY_BTN]").should(
-      "not.have.attr",
-      "disabled"
-    );
-    cy.get("[data-test=RESPONSESPEAK_BTN]").should("not.have.attr", "disabled");
+    cy.get("[data-cy=source-form-copy-btn]")
+      .should("exist")
+      .and("be.visible")
+      .and("not.have.attr", "disabled");
+    cy.get("[data-cy=target-form-copy-btn]")
+      .should("exist")
+      .and("be.visible")
+      .and("not.have.attr", "disabled");
+    cy.get("[data-cy=responsespeak-btn]")
+      .should("exist")
+      .and("be.visible")
+      .and("not.have.attr", "disabled");
   });
 
   it("Speech translation button works", () => {
-    cy.get("[data-test=RESPONSESPEAK_BTN]").click();
+    cy.get("[data-cy=responsespeak-btn]")
+      .should("exist")
+      .and("be.visible")
+      .click();
   });
 });
 
 describe("Reverse translation works properly", () => {
   it("Can switch language options selection to be translated", () => {
-    cy.get("[data-test=INTERCHANGE_LANGUAGE_BTN]").click();
+    cy.get("[data-cy=interchange-language-btn]")
+      .should("exist")
+      .and("be.visible")
+      .click();
   });
 
   it("Copy form text values buttons work", () => {
-    cy.get("[data-test=SOURCE_FORM_COPY_BTN]").click();
+    cy.get("[data-cy=source-form-copy-btn]")
+      .should("exist")
+      .and("be.visible")
+      .click();
 
-    cy.get("[data-test=SOURCE_FORM_COPY_BTN_TOOLTIP]").should(
-      "contain",
-      "Text Copied"
-    );
-    cy.get("[data-test=TARGET_FORM_COPY_BTN]").click();
+    cy.get("[data-cy=source-form-copy-btn-tooltip]")
+      .should("exist")
+      .and("not.be.visible")
+      .and("contain", "Text Copied");
 
-    cy.get("[data-test=TARGET_FORM_COPY_BTN_TOOLTIP]").should(
-      "contain",
-      "Text Copied"
-    );
+    cy.get("[data-cy=target-form-copy-btn]")
+      .should("exist")
+      .and("be.visible")
+      .click();
+
+    cy.get("[data-cy=target-form-copy-btn-tooltip]")
+      .should("exist")
+      .and("not.be.visible")
+      .and("contain", "Text Copied");
   });
 });
