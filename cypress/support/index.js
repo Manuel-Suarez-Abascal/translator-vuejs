@@ -14,7 +14,11 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./themes/setDarkTheme";
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+/**
+ * This hook will be triggered before any tests are run.
+ */
+before(() => {
+  return Cypress.env("withDarkTheme") ? cy.setDarkTheme() : "";
+});

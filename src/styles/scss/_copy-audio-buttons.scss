@@ -1,4 +1,3 @@
-/* textarea buttons styling */
 .textarea {
     padding-right: 50px !important;
     /* Styling for copying text/audio voice buttons */
@@ -12,7 +11,7 @@
         cursor: not-allowed;
       } 
     } 
-  }/* Overrides vue-bootstrap class on buttons */
+  }
   .btn-secondary {
     color: #000 !important;
     background-color: #fff !important;
